@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             FlipperView view = new FlipperView(getBaseContext());
             view.setImageDrawable(R.drawable.ic_launcher)
                     .setDescription("Cool" + (i + 1));
-            flipperLayout.addSlider(view);
+            flipperLayout.addFlipperView(view);
             view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
                 @Override
                 public void onFlipperClick(FlipperView flipperView) {

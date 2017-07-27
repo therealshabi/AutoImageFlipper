@@ -16,7 +16,7 @@ import lombok.Getter;
 
 public class FlipperView {
 
-    protected FlipperView.OnFlipperClickListener onFLipperClickListener;
+    private FlipperView.OnFlipperClickListener onFLipperClickListener;
     @Getter
     private String description;
     @DrawableRes
