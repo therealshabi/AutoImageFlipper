@@ -14,33 +14,30 @@ import com.bumptech.glide.Glide;
 
 import lombok.Getter;
 
-public class ImageFlipperView {
+public class FlipperView {
 
+    protected FlipperView.OnFlipperClickListener onFLipperClickListener;
     @Getter
     private String description;
-
     @DrawableRes
     @Getter
     private int imageRes;
-
     @Getter
     private String imageUrl;
-
     @Getter
     private ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
-
     private Context context;
 
-    public ImageFlipperView(Context context) {
+    public FlipperView(Context context) {
         this.context = context;
     }
 
-    public ImageFlipperView setDescription(String description) {
+    public FlipperView setDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public ImageFlipperView setImageUrl(String imageUrl) {
+    public FlipperView setImageUrl(String imageUrl) {
         if (imageRes != 0) {
             throw new IllegalStateException("Can't set multiple images");
         }
@@ -48,7 +45,7 @@ public class ImageFlipperView {
         return this;
     }
 
-    public ImageFlipperView setImageDrawable(int imageDrawable) {
+    public FlipperView setImageDrawable(int imageDrawable) {
         if (!TextUtils.isEmpty(imageUrl)) {
             throw new IllegalStateException("Can't set multiple images");
         }
@@ -56,7 +53,7 @@ public class ImageFlipperView {
         return this;
     }
 
-    public ImageFlipperView setImageScaleType(ImageView.ScaleType scaleType) {
+    public FlipperView setImageScaleType(ImageView.ScaleType scaleType) {
         this.scaleType = scaleType;
         return this;
     }
@@ -67,11 +64,25 @@ public class ImageFlipperView {
         ImageView autoSliderImage = (ImageView) v.findViewById(R.id.iv_auto_image_slider);
         TextView description = (TextView) v.findViewById(R.id.tv_auto_image_slider);
         description.setText(getDescription());
-        bindData(autoSliderImage);
+        bindData(v, autoSliderImage);
         return v;
     }
 
-    private void bindData(ImageView autoSliderImage) {
+    public FlipperView setOnFlipperClickListener(FlipperView.OnFlipperClickListener l) {
+        onFLipperClickListener = l;
+        return this;
+    }
+
+    private void bindData(View v, ImageView autoSliderImage) {
+        final FlipperView con = this;
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onFLipperClickListener != null) {
+                    onFLipperClickListener.onFlipperClick(con);
+                }
+            }
+        });
         try {
             autoSliderImage.setScaleType(getScaleType());
             if (imageUrl != null) {
@@ -87,6 +98,9 @@ public class ImageFlipperView {
         } catch (Exception exception) {
             Log.d("Exception", exception.getMessage());
         }
+    }
 
+    public interface OnFlipperClickListener {
+        void onFlipperClick(FlipperView flipperView);
     }
 }

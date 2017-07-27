@@ -18,8 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         tools:text="This is for Test"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="40dp"
         android:textColor="@android:color/black"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </FrameLayout>

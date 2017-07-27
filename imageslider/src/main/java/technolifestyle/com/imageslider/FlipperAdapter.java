@@ -10,17 +10,17 @@ import java.util.ArrayList;
 import lombok.Setter;
 
 
-class ImageFlippingAdapter extends PagerAdapter {
+class FlipperAdapter extends PagerAdapter {
 
     private Context context;
     @Setter
-    private ArrayList<ImageFlipperView> flipperViews = new ArrayList<>();
+    private ArrayList<FlipperView> flipperViews = new ArrayList<>();
 
-    ImageFlippingAdapter(Context context) {
+    FlipperAdapter(Context context) {
         this.context = context;
     }
 
-    public void addFlipperView(ImageFlipperView view) {
+    public void addFlipperView(FlipperView view) {
         flipperViews.add(view);
         notifyDataSetChanged();
     }
@@ -30,7 +30,7 @@ class ImageFlippingAdapter extends PagerAdapter {
         notifyDataSetChanged();
     }
 
-    public ImageFlipperView getFlipperView(int position) {
+    public FlipperView getFlipperView(int position) {
         if (flipperViews.isEmpty() || position >= flipperViews.size()) {
             return null;
         }
@@ -49,7 +49,7 @@ class ImageFlippingAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageFlipperView imageFlipperView = flipperViews.get(position);
+        FlipperView imageFlipperView = flipperViews.get(position);
         View v = imageFlipperView.getView();
         container.addView(v);
         return v;
