@@ -14,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 import lombok.Getter;
 
-class ImageFlipperView {
+public class ImageFlipperView {
 
     @Getter
     private String description;
@@ -63,7 +63,7 @@ class ImageFlipperView {
 
     public View getView() {
         @SuppressLint("InflateParams")
-        View v = LayoutInflater.from(context).inflate(R.layout.image_flipper_layout_item, null);
+        View v = LayoutInflater.from(context).inflate(R.layout.image_flipper_layout_item, null, true);
         ImageView autoSliderImage = (ImageView) v.findViewById(R.id.iv_auto_image_slider);
         TextView description = (TextView) v.findViewById(R.id.tv_auto_image_slider);
         description.setText(getDescription());

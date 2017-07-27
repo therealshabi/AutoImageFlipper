@@ -31,4 +31,5 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.18'
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'me.relex:circleindicator:1.2.2@aar'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 }

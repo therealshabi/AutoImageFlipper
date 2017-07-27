@@ -3,6 +3,7 @@ package technolifestyle.com.imageslider;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,19 @@ class ImageFlippingAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return false;
+        return view==object;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        ImageFlipperView imageFlipperView = flipperViews.get(position);
+        View v = imageFlipperView.getView();
+        container.addView(v);
+        return v;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView((View) object);
     }
 }
