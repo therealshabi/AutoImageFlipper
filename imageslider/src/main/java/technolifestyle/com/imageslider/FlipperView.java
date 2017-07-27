@@ -12,19 +12,17 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import lombok.Getter;
-
 public class FlipperView {
 
     private FlipperView.OnFlipperClickListener onFlipperClickListener;
-    @Getter
+
     private String description;
+
     @DrawableRes
-    @Getter
     private int imageRes;
-    @Getter
+
     private String imageUrl;
-    @Getter
+
     private ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
     private Context context;
 
@@ -32,9 +30,21 @@ public class FlipperView {
         this.context = context;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public FlipperView setDescription(String description) {
         this.description = description;
         return this;
+    }
+
+    public int getImageRes() {
+        return imageRes;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public FlipperView setImageUrl(String imageUrl) {
@@ -43,6 +53,10 @@ public class FlipperView {
         }
         this.imageUrl = imageUrl;
         return this;
+    }
+
+    public ImageView.ScaleType getScaleType() {
+        return scaleType;
     }
 
     public FlipperView setImageDrawable(int imageDrawable) {

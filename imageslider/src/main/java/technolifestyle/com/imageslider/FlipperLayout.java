@@ -12,7 +12,6 @@ import android.widget.FrameLayout;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import lombok.Getter;
 import me.relex.circleindicator.CircleIndicator;
 
 /*
@@ -24,28 +23,32 @@ public class FlipperLayout extends FrameLayout {
     *  Delay for Timer Task
      */
     private static final long DELAY_MS = 500;
+
     /*
     *   Flipping Pager Adapter
      */
-    @Getter
     private static PagerAdapter mFlippingPagerAdapter;
+
     /*
     * Used for auto cycling to keep the count of current page
      */
     int currentPage = 0;
+
     /*
     * Flipping View Pager
      */
     private ViewPager mFlippingPager;
+
     /*
     * CircleIndicator which Indicates the View Pager
      */
     private CircleIndicator pagerIndicator;
+
     /*
-    * Scroll Time in seconds
-     */
-    @Getter
+        * Scroll Time in seconds
+         */
     private int scrollTimeInSec = 3;
+
     /*
     * Handler for handling auto cycle
      */
@@ -67,10 +70,33 @@ public class FlipperLayout extends FrameLayout {
     }
 
     /*
+    * Getter for FlippingPagerAdapter
+     */
+    public static PagerAdapter getFlippingPagerAdapter() {
+        return mFlippingPagerAdapter;
+    }
+
+    /*
+    *   Getter for ScrollTime
+     */
+    public int getScrollTimeInSec() {
+        return scrollTimeInSec;
+    }
+
+    /*
+    * Setting up Scrolling Time for a page
+    * @params time in second is sent
+     */
+    public void setScrollTimeInSec(int time) {
+        scrollTimeInSec = time;
+        startAutoCycle();
+    }
+
+    /*
     * This returns the current page position of view pager
      */
     public int getCurrentPagePosition() {
-        if (getMFlippingPagerAdapter() != null) {
+        if (getFlippingPagerAdapter() != null) {
             return mFlippingPager.getCurrentItem() % mFlippingPagerAdapter.getCount();
         } else {
             throw new NullPointerException("Adapter not set");
@@ -105,21 +131,12 @@ public class FlipperLayout extends FrameLayout {
     }
 
     /*
-    * Setting up Scrolling Time for a page
-    * @params time in second is sent
-     */
-    public void setScrollTimeInSec(int time) {
-        scrollTimeInSec = time;
-        startAutoCycle();
-    }
-
-    /*
     * Method to start Auto Cycle using Handler, Runnable and Timer
      */
     public void startAutoCycle() {
         final Runnable Update = new Runnable() {
             public void run() {
-                if (currentPage == getMFlippingPagerAdapter().getCount()) {
+                if (currentPage == getFlippingPagerAdapter().getCount()) {
                     currentPage = 0;
                 }
                 // true set for smooth transition between pager

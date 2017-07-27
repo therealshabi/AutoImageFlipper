@@ -7,20 +7,21 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import lombok.Setter;
-
 
 class FlipperAdapter extends PagerAdapter {
 
     private Context context;
-    @Setter
     private ArrayList<FlipperView> flipperViews = new ArrayList<>();
 
     FlipperAdapter(Context context) {
         this.context = context;
     }
 
-    public void addFlipperView(FlipperView view) {
+    public void setFlipperViews(ArrayList<FlipperView> flipperViews) {
+        this.flipperViews = flipperViews;
+    }
+
+    void addFlipperView(FlipperView view) {
         flipperViews.add(view);
         notifyDataSetChanged();
     }
@@ -44,7 +45,7 @@ class FlipperAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view==object;
+        return view == object;
     }
 
     @Override
