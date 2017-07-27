@@ -16,7 +16,7 @@ import lombok.Getter;
 
 public class FlipperView {
 
-    private FlipperView.OnFlipperClickListener onFLipperClickListener;
+    private FlipperView.OnFlipperClickListener onFlipperClickListener;
     @Getter
     private String description;
     @DrawableRes
@@ -69,7 +69,7 @@ public class FlipperView {
     }
 
     public FlipperView setOnFlipperClickListener(FlipperView.OnFlipperClickListener l) {
-        onFLipperClickListener = l;
+        onFlipperClickListener = l;
         return this;
     }
 
@@ -78,8 +78,8 @@ public class FlipperView {
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onFLipperClickListener != null) {
-                    onFLipperClickListener.onFlipperClick(con);
+                if (onFlipperClickListener != null) {
+                    onFlipperClickListener.onFlipperClick(con);
                 }
             }
         });
