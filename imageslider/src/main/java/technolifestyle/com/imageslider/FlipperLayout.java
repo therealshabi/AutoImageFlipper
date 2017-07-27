@@ -19,26 +19,17 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class FlipperLayout extends RelativeLayout {
 
-    private ViewPager mFlippingPager;
-
-    private CircleIndicator pagerIndicator;
-
+    private static ViewPager mFlippingPager;
     @Getter
-    private PagerAdapter mFlippingPagerAdapter;
-
+    private static PagerAdapter mFlippingPagerAdapter;
+    private CircleIndicator pagerIndicator;
     @Getter
     private long scrollTime = 3;
 
     private Timer flippingTimer;
     private TimerTask flippingTask;
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            moveNextPosition();
-        }
-    };
+    private Handler handler = new FlipperHandler();
 
     public FlipperLayout(Context context) {
         super(context);
@@ -54,13 +45,13 @@ public class FlipperLayout extends RelativeLayout {
         startAutoCycle();
     }
 
-    void addSlider(ImageFlipperView flipperView) {
-        ((ImageFlippingAdapter) mFlippingPagerAdapter).addFlipperView(flipperView);
-    }
-
-    private void moveNextPosition() {
+    private static void moveNextPosition() {
         mFlippingPager.setCurrentItem(
                 (mFlippingPager.getCurrentItem() + 1) % mFlippingPagerAdapter.getCount(), true);
+    }
+
+    void addSlider(ImageFlipperView flipperView) {
+        ((ImageFlippingAdapter) mFlippingPagerAdapter).addFlipperView(flipperView);
     }
 
     public void setScrollTime(long time) {
@@ -91,5 +82,11 @@ public class FlipperLayout extends RelativeLayout {
         }
     }
 
+    private static class FlipperHandler extends Handler {
 
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            moveNextPosition();
+        }
+    }
 }
