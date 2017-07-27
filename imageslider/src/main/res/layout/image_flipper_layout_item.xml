@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <ImageView
@@ -16,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:text="This is for Test"
-        android:padding="8dp"
+        tools:text="This is for Test"
+        android:layout_marginBottom="40dp"
         android:textColor="@android:color/black"
         android:textSize="20sp" />
 
