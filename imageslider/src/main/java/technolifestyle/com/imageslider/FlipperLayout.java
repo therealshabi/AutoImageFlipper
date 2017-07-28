@@ -28,31 +28,28 @@ public class FlipperLayout extends FrameLayout {
     *   Flipping Pager Adapter
      */
     private static PagerAdapter mFlippingPagerAdapter;
-
     /*
-    * Used for auto cycling to keep the count of current page
-     */
+        * Used for auto cycling to keep the count of current page
+         */
     int currentPage = 0;
-
     /*
     * Flipping View Pager
      */
     private ViewPager mFlippingPager;
-
     /*
     * CircleIndicator which Indicates the View Pager
      */
     private CircleIndicator pagerIndicator;
-
     /*
         * Scroll Time in seconds
          */
-    private int scrollTimeInSec = 3;
-
+    private int scrollTimeInSec = 2;
     /*
     * Handler for handling auto cycle
      */
     private Handler handler = new Handler();
+
+    CircularFlipperHandler circularFlipperHandler;
 
     public FlipperLayout(Context context) {
         super(context);
@@ -117,6 +114,11 @@ public class FlipperLayout extends FrameLayout {
 
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
 
+        circularFlipperHandler  = new CircularFlipperHandler(mFlippingPager);
+        circularFlipperHandler.setOnCurrentPageListener(this);
+
+        mFlippingPager.addOnPageChangeListener(circularFlipperHandler);
+
         //Starting auto cycle at the time of setting up of layout
         startAutoCycle();
     }
@@ -151,5 +153,15 @@ public class FlipperLayout extends FrameLayout {
                 handler.post(Update);
             }
         }, DELAY_MS, scrollTimeInSec * 1000);
+    }
+
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
+
+    interface CurrentPageListener {
+        int onCurrentPageChanged(int currentPosition);
+
+        void setOnCurrentPageListener(FlipperLayout flipperLayout);
     }
 }
