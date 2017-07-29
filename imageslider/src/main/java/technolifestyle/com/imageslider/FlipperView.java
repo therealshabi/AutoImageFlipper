@@ -2,6 +2,7 @@ package technolifestyle.com.imageslider;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.Log;
@@ -30,7 +31,7 @@ public class FlipperView {
         this.context = context;
     }
 
-    public String getDescription() {
+    private String getDescription() {
         return description;
     }
 
@@ -55,7 +56,7 @@ public class FlipperView {
         return this;
     }
 
-    public ImageView.ScaleType getScaleType() {
+    private ImageView.ScaleType getScaleType() {
         return scaleType;
     }
 
@@ -77,6 +78,7 @@ public class FlipperView {
         View v = LayoutInflater.from(context).inflate(R.layout.image_flipper_layout_item, null, true);
         ImageView autoSliderImage = (ImageView) v.findViewById(R.id.iv_auto_image_slider);
         TextView description = (TextView) v.findViewById(R.id.tv_auto_image_slider);
+        description.getBackground().setAlpha(80);
         description.setText(getDescription());
         bindData(v, autoSliderImage);
         return v;
@@ -100,10 +102,9 @@ public class FlipperView {
         try {
             autoSliderImage.setScaleType(getScaleType());
             if (imageUrl != null) {
-                Glide.with(context).load(imageUrl)
+                Glide.with(context).load(Uri.parse(imageUrl))
                         .thumbnail(0.1f)
                         .into(autoSliderImage);
-
             } else {
                 Glide.with(context).load(imageRes)
                         .thumbnail(0.1f)

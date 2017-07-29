@@ -113,9 +113,9 @@ public class FlipperLayout extends FrameLayout implements CircularFlipperHandler
 
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
 
+        // Handler for onPageChangeListener
         circularFlipperHandler = new CircularFlipperHandler(mFlippingPager);
         circularFlipperHandler.setCurrentPageListener(this);
-
         mFlippingPager.addOnPageChangeListener(circularFlipperHandler);
 
         //Starting auto cycle at the time of setting up of layout
@@ -152,10 +152,6 @@ public class FlipperLayout extends FrameLayout implements CircularFlipperHandler
                 handler.post(Update);
             }
         }, DELAY_MS, scrollTimeInSec * 1000);
-    }
-
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
     }
 
     @Override

@@ -7,7 +7,6 @@ class CircularFlipperHandler implements ViewPager.OnPageChangeListener {
     private int mCurrentPosition;
     private int mScrollState;
 
-    private FlipperLayout flipperLayout;
     private CurrentPageListener currentPageListener;
 
     CircularFlipperHandler(final ViewPager viewPager) {

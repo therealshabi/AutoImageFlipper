@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private void setLayout() {
         for (int i = 0; i < 3; i++) {
             FlipperView view = new FlipperView(getBaseContext());
-            view.setImageDrawable(R.drawable.ic_launcher)
+            view.setImageUrl("https://theluxurytravelexpert.files.wordpress.com/2014/01/scenery.jpg")
                     .setDescription("Cool" + (i + 1));
             flipperLayout.addFlipperView(view);
             view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
