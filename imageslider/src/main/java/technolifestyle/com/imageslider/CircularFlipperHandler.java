@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPager;
 class CircularFlipperHandler implements ViewPager.OnPageChangeListener {
     private ViewPager mViewPager;
     private int mCurrentPosition;
-    private int mScrollState;
 
     private CurrentPageListener currentPageListener;
 
@@ -25,32 +24,13 @@ class CircularFlipperHandler implements ViewPager.OnPageChangeListener {
 
     @Override
     public void onPageScrollStateChanged(final int state) {
-        handleScrollState(state);
-        mScrollState = state;
-    }
-
-    private void handleScrollState(final int state) {
-        if (state == ViewPager.SCROLL_STATE_IDLE) {
-            setNextItemIfNeeded();
-        }
-    }
-
-    private void setNextItemIfNeeded() {
-        if (!isScrollStateSettling()) {
-            handleSetNextItem();
-        }
-    }
-
-    private boolean isScrollStateSettling() {
-        return mScrollState == ViewPager.SCROLL_STATE_SETTLING;
-    }
-
-    private void handleSetNextItem() {
-        final int lastPosition = mViewPager.getAdapter().getCount() - 1;
-        if (mCurrentPosition == 0) {
-            mViewPager.setCurrentItem(lastPosition, false);
-        } else if (mCurrentPosition == lastPosition) {
-            mViewPager.setCurrentItem(0, false);
+        int currentPage = mViewPager.getCurrentItem();
+        if (currentPage == mViewPager.getAdapter().getCount()-1 || currentPage == 0){
+            int previousState = mCurrentPosition;
+            mCurrentPosition = state;
+            if (previousState == 1 && mCurrentPosition == 0){
+                mViewPager.setCurrentItem(currentPage == 0 ? mViewPager.getAdapter().getCount()-1 : 0);
+            }
         }
     }
 
