@@ -17,7 +17,7 @@ import me.relex.circleindicator.CircleIndicator;
 /*
 * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
-public class FlipperLayout extends FrameLayout {
+public class FlipperLayout extends FrameLayout implements CircularFlipperHandler.CurrentPageListener {
 
     /*
     *  Delay for Timer Task
@@ -32,6 +32,7 @@ public class FlipperLayout extends FrameLayout {
         * Used for auto cycling to keep the count of current page
          */
     int currentPage = 0;
+    CircularFlipperHandler circularFlipperHandler;
     /*
     * Flipping View Pager
      */
@@ -48,8 +49,6 @@ public class FlipperLayout extends FrameLayout {
     * Handler for handling auto cycle
      */
     private Handler handler = new Handler();
-
-    CircularFlipperHandler circularFlipperHandler;
 
     public FlipperLayout(Context context) {
         super(context);
@@ -114,8 +113,8 @@ public class FlipperLayout extends FrameLayout {
 
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
 
-        circularFlipperHandler  = new CircularFlipperHandler(mFlippingPager);
-        circularFlipperHandler.setOnCurrentPageListener(this);
+        circularFlipperHandler = new CircularFlipperHandler(mFlippingPager);
+        circularFlipperHandler.setCurrentPageListener(this);
 
         mFlippingPager.addOnPageChangeListener(circularFlipperHandler);
 
@@ -159,9 +158,8 @@ public class FlipperLayout extends FrameLayout {
         this.currentPage = currentPage;
     }
 
-    interface CurrentPageListener {
-        int onCurrentPageChanged(int currentPosition);
-
-        void setOnCurrentPageListener(FlipperLayout flipperLayout);
+    @Override
+    public void onCurrentPageChanged(int currentPosition) {
+        this.currentPage = currentPosition;
     }
 }

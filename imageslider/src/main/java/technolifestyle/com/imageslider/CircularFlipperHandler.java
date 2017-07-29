@@ -2,21 +2,26 @@ package technolifestyle.com.imageslider;
 
 import android.support.v4.view.ViewPager;
 
-class CircularFlipperHandler implements ViewPager.OnPageChangeListener, FlipperLayout.CurrentPageListener {
-    private ViewPager   mViewPager;
-    private int         mCurrentPosition;
-    private int         mScrollState;
+class CircularFlipperHandler implements ViewPager.OnPageChangeListener {
+    private ViewPager mViewPager;
+    private int mCurrentPosition;
+    private int mScrollState;
 
     private FlipperLayout flipperLayout;
+    private CurrentPageListener currentPageListener;
 
     CircularFlipperHandler(final ViewPager viewPager) {
         mViewPager = viewPager;
     }
 
+    void setCurrentPageListener(CurrentPageListener currentPageListener) {
+        this.currentPageListener = currentPageListener;
+    }
+
     @Override
     public void onPageSelected(final int position) {
         mCurrentPosition = position;
-        onCurrentPageChanged(mCurrentPosition);
+        currentPageListener.onCurrentPageChanged(mCurrentPosition);
     }
 
     @Override
@@ -43,9 +48,9 @@ class CircularFlipperHandler implements ViewPager.OnPageChangeListener, FlipperL
 
     private void handleSetNextItem() {
         final int lastPosition = mViewPager.getAdapter().getCount() - 1;
-        if(mCurrentPosition == 0) {
+        if (mCurrentPosition == 0) {
             mViewPager.setCurrentItem(lastPosition, false);
-        } else if(mCurrentPosition == lastPosition) {
+        } else if (mCurrentPosition == lastPosition) {
             mViewPager.setCurrentItem(0, false);
         }
     }
@@ -54,14 +59,7 @@ class CircularFlipperHandler implements ViewPager.OnPageChangeListener, FlipperL
     public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
     }
 
-    @Override
-    public int onCurrentPageChanged(int currentPosition) {
-        flipperLayout.setCurrentPage(currentPosition);
-        return currentPosition;
-    }
-
-    @Override
-    public void setOnCurrentPageListener(FlipperLayout flipperLayout) {
-        this.flipperLayout = flipperLayout;
+    interface CurrentPageListener {
+        void onCurrentPageChanged(int currentPosition);
     }
 }
