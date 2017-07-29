@@ -68,7 +68,7 @@ public class FlipperLayout extends FrameLayout implements CircularFlipperHandler
     /*
     * Getter for FlippingPagerAdapter
      */
-    public static PagerAdapter getFlippingPagerAdapter() {
+    private static PagerAdapter getFlippingPagerAdapter() {
         return mFlippingPagerAdapter;
     }
 
@@ -134,7 +134,7 @@ public class FlipperLayout extends FrameLayout implements CircularFlipperHandler
     /*
     * Method to start Auto Cycle using Handler, Runnable and Timer
      */
-    public void startAutoCycle() {
+    private void startAutoCycle() {
         final Runnable Update = new Runnable() {
             public void run() {
                 if (currentPage == getFlippingPagerAdapter().getCount()) {
