@@ -3,28 +3,57 @@
 
 Auto Scrolling Image Pager with Pager Indicator and Text
 
-This is an Automatic scrolling Image Slider Library with the functionality of adding an image with its optional description,
-it also has a View Pager Indicator and built in listeners.
-The library is still in alpha phase and a lot of features are coming soon...
-
-
-Step 1. Add the JitPack repository to your build file
-
-Add it in your root build.gradle at the end of repositories:
-
-```
-  allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
-```
-Step 2. Add the dependency
+## Gradle 
 ```
 	dependencies {
 	        compile 'com.github.therealshabi:AutoImageFlipper:v1.4-alpha'
 	}
 ```
+
+## Implementation
+
+This is an Automatic scrolling Image Slider Library with the functionality of adding an image with its optional description,
+it also has a View Pager Indicator and built in listeners.
+The library is still in alpha phase and a lot of features are coming soon...
+
+## Usage
+* In XML layout:
+```xml
+<technolifestyle.com.imageslider.FlipperLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/flipper_layout"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"/>
+```
+* In Java File:
+For View Pager with 3 Views
+```        
+FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
+int num_of_pages = 3;
+        for (int i = 0; i < num_of_pages; i++) {
+            FlipperView view = new FlipperView(getBaseContext());
+            view.setImageUrl("<valid image url>")
+	    	.setImageDrawable(R.drawable.test) // Use one of setImageUrl() or setImageDrawable() functions, otherwise IllegalStateException will be thrown
+		.setImageScaleType(ScaleType.CENTER_CROP) //You can use any ScaleType
+                .setDescription("Description")
+		.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
+                @Override
+                public void onFlipperClick(FlipperView flipperView) {
+                    //Handle View Click here
+                }
+            });
+            flipperLayout.addFlipperView(view);
+        }
+
+```
+
+## Tools and Libraries Used : 
+
+1. GLide for Image loading and caching
+2. Circle Indicator by https://github.com/ongakuer/CircleIndicator
+
+
+Please feel free to contribute by pull request, issues or feature requests.
 
 
