@@ -16,6 +16,8 @@ This is an Automatic scrolling Image Slider Library with the functionality of ad
 it also has a View Pager Indicator and built in listeners.
 The library is still in alpha phase and a lot of features are coming soon...
 
+<img src="/gif/demo.gif" alt="Auto Image Slider" width= "300px"/>
+
 ## Usage
 * In XML layout:
 ```xml
@@ -43,6 +45,9 @@ int num_of_pages = 3;
                     //Handle View Click here
                 }
             });
+            flipperLayout.setScrollTimeInSec(3); //setting up scroll time, by default it's 3 seconds
+	    flipperLayout.getScrollTimeInSec(); //returns the scroll time in sec
+	    flipperLayout.getCurrentPagePosition(); //returns the current position of pager
             flipperLayout.addFlipperView(view);
         }
 
@@ -50,7 +55,7 @@ int num_of_pages = 3;
 
 ## Tools and Libraries Used : 
 
-1. GLide for Image loading and caching
+1. Glide for Image loading and caching
 2. Circle Indicator by https://github.com/ongakuer/CircleIndicator
 
 
