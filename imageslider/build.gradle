@@ -27,6 +27,6 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
-    compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'me.relex:circleindicator:1.2.2@aar'
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

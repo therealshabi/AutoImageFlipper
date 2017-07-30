@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 public class FlipperView {
 
@@ -102,13 +102,10 @@ public class FlipperView {
         try {
             autoSliderImage.setScaleType(getScaleType());
             if (imageUrl != null) {
-                Glide.with(context).load(Uri.parse(imageUrl))
-                        .thumbnail(0.1f)
+                Picasso.with(context).load(Uri.parse(imageUrl))
                         .into(autoSliderImage);
             } else {
-                Glide.with(context).load(imageRes)
-                        .thumbnail(0.1f)
-                        .into(autoSliderImage);
+                Picasso.with(context).load(imageRes).into(autoSliderImage);
             }
         } catch (Exception exception) {
             Log.d("Exception", exception.getMessage());

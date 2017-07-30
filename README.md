@@ -55,7 +55,7 @@ int num_of_pages = 3;
 
 ## Tools and Libraries Used : 
 
-1. Glide for Image loading and caching
+1. Picaaso for Image loading
 2. Circle Indicator by https://github.com/ongakuer/CircleIndicator
 
 
