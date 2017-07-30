@@ -6,7 +6,7 @@ Auto Scrolling Image Pager with Pager Indicator and Text
 ## Gradle 
 ```
 	dependencies {
-	        compile 'com.github.therealshabi:AutoImageFlipper:v1.4-alpha'
+	        compile 'com.github.therealshabi:AutoImageFlipper:v1.4-beta'
 	}
 ```
 
