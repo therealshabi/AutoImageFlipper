@@ -6,6 +6,16 @@
 Auto Scrolling Image Pager with Pager Indicator and Text
 
 ## Gradle 
+
+1. In your top level `build.gradle` file, in the `repository` section add the `maven { url 'https://jitpack.io' }` as shown below
+```allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
+```
+2. Add the `AutoImageFlipper` dependency in your app level build.gradle file
 ```
 	dependencies {
 	        compile 'com.github.therealshabi:AutoImageFlipper:v1.4.1'
