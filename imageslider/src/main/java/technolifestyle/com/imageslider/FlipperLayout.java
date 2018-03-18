@@ -106,11 +106,10 @@ public class FlipperLayout extends FrameLayout implements CircularFlipperHandler
      */
     private void setLayout(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.flipper_layout, this, true);
-        mFlippingPager = (ViewPager) view.findViewById(R.id.vp_flipper_layout);
-        pagerIndicator = (CircleIndicator) view.findViewById(R.id.pager_indicator);
+        mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
+        pagerIndicator = view.findViewById(R.id.pager_indicator);
 
         mFlippingPagerAdapter = new FlipperAdapter(context);
-
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
 
         // Handler for onPageChangeListener
