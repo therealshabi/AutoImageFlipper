@@ -3,11 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AutoImageFlipper.iml" filepath="$PROJECT_DIR$/AutoImageFlipper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AutoImageFlipper.iml" filepath="$PROJECT_DIR$/AutoImageFlipper.iml" />
       <module fileurl="file://$PROJECT_DIR$/AutoImageSlider.iml" filepath="$PROJECT_DIR$/AutoImageSlider.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/imageslider/imageslider.iml" filepath="$PROJECT_DIR$/imageslider/imageslider.iml" />
       <module fileurl="file://$PROJECT_DIR$/imageslider/imageslider.iml" filepath="$PROJECT_DIR$/imageslider/imageslider.iml" />
     </modules>
   </component>

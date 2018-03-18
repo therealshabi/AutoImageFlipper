@@ -75,13 +75,13 @@ public class FlipperView {
 
     public View getView() {
         @SuppressLint("InflateParams")
-        View view = LayoutInflater.from(context).inflate(R.layout.image_flipper_layout_item, null, true);
-        ImageView autoSliderImage = view.findViewById(R.id.iv_auto_image_slider);
-        TextView description = view.findViewById(R.id.tv_auto_image_slider);
+        View v = LayoutInflater.from(context).inflate(R.layout.image_flipper_layout_item, null, true);
+        ImageView autoSliderImage = (ImageView) v.findViewById(R.id.iv_auto_image_slider);
+        TextView description = (TextView) v.findViewById(R.id.tv_auto_image_slider);
         description.getBackground().setAlpha(80);
         description.setText(getDescription());
-        bindData(view, autoSliderImage);
-        return view;
+        bindData(v, autoSliderImage);
+        return v;
     }
 
     public FlipperView setOnFlipperClickListener(FlipperView.OnFlipperClickListener l) {
@@ -102,10 +102,10 @@ public class FlipperView {
         try {
             autoSliderImage.setScaleType(getScaleType());
             if (imageUrl != null) {
-                Picasso.get().load(Uri.parse(imageUrl))
+                Picasso.with(context).load(Uri.parse(imageUrl))
                         .into(autoSliderImage);
             } else {
-                Picasso.get().load(imageRes).into(autoSliderImage);
+                Picasso.with(context).load(imageRes).into(autoSliderImage);
             }
         } catch (Exception exception) {
             Log.d("Exception", exception.getMessage());
