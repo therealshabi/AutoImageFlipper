@@ -75,7 +75,11 @@ public class FlipperView {
 
     public View getView() {
         @SuppressLint("InflateParams")
-        View view = LayoutInflater.from(context).inflate(R.layout.image_flipper_layout_item, null, true);
+        View view = LayoutInflater.from(context)
+                .inflate(
+                        R.layout.image_flipper_layout_item,
+                        null,
+                        true);
         ImageView autoSliderImage = view.findViewById(R.id.iv_auto_image_slider);
         TextView description = view.findViewById(R.id.tv_auto_image_slider);
         description.getBackground().setAlpha(80);
