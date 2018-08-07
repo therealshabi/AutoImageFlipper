@@ -27,7 +27,7 @@ dependencies {
 
 This is an Automatic scrolling Image Slider Library with the functionality of adding an image with its optional description,
 it also has a View Pager Indicator and built in listeners.
-The library is still in alpha phase and a lot of features are coming soon...
+The library is open for contributions. For adding extra features you may send me a Pull Request...
 
 <img src="/gif/demo.gif" alt="Auto Image Slider" width= "300px"/>
 
