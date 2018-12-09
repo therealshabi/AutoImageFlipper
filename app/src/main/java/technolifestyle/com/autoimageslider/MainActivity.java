@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
+        flipperLayout = findViewById(R.id.flipper_layout);
 
         setLayout();
     }
