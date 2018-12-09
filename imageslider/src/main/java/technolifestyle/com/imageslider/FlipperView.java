@@ -3,7 +3,7 @@ package technolifestyle.com.imageslider;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
