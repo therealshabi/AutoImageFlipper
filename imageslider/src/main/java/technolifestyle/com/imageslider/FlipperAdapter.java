@@ -1,12 +1,13 @@
 package technolifestyle.com.imageslider;
 
 import android.content.Context;
-import androidx.viewpager.widget.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 
 class FlipperAdapter extends PagerAdapter {
 
