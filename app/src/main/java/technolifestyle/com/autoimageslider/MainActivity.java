@@ -1,8 +1,7 @@
 package technolifestyle.com.autoimageslider;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import technolifestyle.com.imageslider.FlipperLayout;

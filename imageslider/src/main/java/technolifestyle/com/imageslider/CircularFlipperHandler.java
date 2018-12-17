@@ -1,6 +1,6 @@
 package technolifestyle.com.imageslider;
 
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 
 class CircularFlipperHandler implements ViewPager.OnPageChangeListener {
     private ViewPager mViewPager;
