@@ -2,6 +2,7 @@ package technolifestyle.com.autoimageslider;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import technolifestyle.com.imageslider.FlipperLayout;
@@ -18,11 +19,14 @@ public class MainActivity extends AppCompatActivity {
 
         flipperLayout = findViewById(R.id.flipper_layout);
 
+        // Uncomment to add your custom scroll time (default is 3 seconds)
+        // flipperLayout.setScrollTimeInSec(5);
+
         setLayout();
     }
 
     private void setLayout() {
-        String url[] = new String[]{
+        String url[] = {
                 "http://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg",
                 "https://i.pinimg.com/originals/d3/84/d1/d384d1c565dc6b501a61286bf0879481.jpg",
                 "https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg"

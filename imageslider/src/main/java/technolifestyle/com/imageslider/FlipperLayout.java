@@ -14,149 +14,168 @@ import java.util.TimerTask;
 
 import me.relex.circleindicator.CircleIndicator;
 
-/*
+/**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
 public class FlipperLayout extends FrameLayout implements
-        CircularFlipperHandler.CurrentPageListener {
+		CircularFlipperHandler.CurrentPageListener {
 
-    /*
-     *  Delay for Timer Task
-     */
-    private static final long DELAY_MS = 500;
+	/**
+	 *  Delay for Timer Task
+	 */
+	private static final long DELAY_MS = 500;
 
-    /*
-     *   Flipping Pager Adapter
-     */
-    private static PagerAdapter mFlippingPagerAdapter;
-    /*
-     * Used for auto cycling to keep the count of current page
-     */
-    int currentPage = 0;
-    CircularFlipperHandler circularFlipperHandler;
-    /*
-     * Flipping View Pager
-     */
-    private ViewPager mFlippingPager;
-    /*
-     * CircleIndicator which Indicates the View Pager
-     */
-    private CircleIndicator pagerIndicator;
-    /*
-     * Scroll Time in seconds
-     */
-    private int scrollTimeInSec = 2;
-    /*
-     * Handler for handling auto cycle
-     */
-    private Handler handler = new Handler();
+	/**
+	 *   Flipping Pager Adapter
+	 */
+	private static PagerAdapter mFlippingPagerAdapter;
 
-    public FlipperLayout(Context context) {
-        super(context);
-        setLayout(context);
-    }
+	/**
+	 * Used for auto cycling to keep the count of current page
+	 */
+	int currentPage = 0;
 
-    public FlipperLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        setLayout(context);
-    }
+	CircularFlipperHandler circularFlipperHandler;
 
-    public FlipperLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        setLayout(context);
-    }
+	/**
+	 * Flipping View Pager
+	 */
+	private ViewPager mFlippingPager;
 
-    /*
-     * Getter for FlippingPagerAdapter
-     */
-    private static PagerAdapter getFlippingPagerAdapter() {
-        return mFlippingPagerAdapter;
-    }
+	/**
+	 * Runnable to update the current page
+	 */
+	private final Runnable update = new Runnable() {
+		public void run() {
+			if (currentPage == getFlippingPagerAdapter().getCount()) {
+				currentPage = 0;
+			}
+			// true set for smooth transition between pager
+			mFlippingPager.setCurrentItem(currentPage, true);
+			currentPage += 1;
+		}
+	};
 
-    /*
-     *   Getter for ScrollTime
-     */
-    public int getScrollTimeInSec() {
-        return scrollTimeInSec;
-    }
+	/**
+	 * CircleIndicator which Indicates the View Pager
+	 */
+	private CircleIndicator pagerIndicator;
 
-    /*
-     * Setting up Scrolling Time for a page
-     * @params time in second is sent
-     */
-    public void setScrollTimeInSec(int time) {
-        scrollTimeInSec = time;
-        startAutoCycle();
-    }
+	/**
+	 * Scroll Time in seconds
+	 */
+	private int scrollTimeInSec = 3;
 
-    /*
-     * This returns the current page position of view pager
-     */
-    public int getCurrentPagePosition() {
-        if (getFlippingPagerAdapter() != null) {
-            return mFlippingPager.getCurrentItem() % mFlippingPagerAdapter.getCount();
-        } else {
-            throw new NullPointerException("Adapter not set");
-        }
-    }
+	/**
+	 * Handler for handling auto cycle
+	 */
+	private Handler handler = new Handler();
 
-    /*
-     * Use for setting up of FlipperLayout, instantiating view pager, pager indicator
-     * and binding the adapter with the view pager
-     * @params context for Inflater
-     */
-    private void setLayout(Context context) {
-        View view = LayoutInflater.from(context).inflate(
-                R.layout.flipper_layout, this, true);
-        mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
-        pagerIndicator = view.findViewById(R.id.pager_indicator);
+	/**
+	 * Scheduler for auto-flipping
+	 */
+	private Timer flippingTimer;
 
-        mFlippingPagerAdapter = new FlipperAdapter(context);
-        mFlippingPager.setAdapter(mFlippingPagerAdapter);
+	public FlipperLayout(Context context) {
+		super(context);
+		setLayout(context);
+	}
 
-        // Handler for onPageChangeListener
-        circularFlipperHandler = new CircularFlipperHandler(mFlippingPager);
-        circularFlipperHandler.setCurrentPageListener(this);
-        mFlippingPager.addOnPageChangeListener(circularFlipperHandler);
+	public FlipperLayout(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		setLayout(context);
+	}
 
-        //Starting auto cycle at the time of setting up of layout
-        startAutoCycle();
-    }
+	public FlipperLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+		super(context, attrs, defStyleAttr);
+		setLayout(context);
+	}
 
-    /*
-     * Add Flipper View to the pager adapter
-     * @params flipperView is sent as the view to be added to the adapter
-     */
-    public void addFlipperView(FlipperView flipperView) {
-        ((FlipperAdapter) mFlippingPagerAdapter).addFlipperView(flipperView);
-        pagerIndicator.setViewPager(mFlippingPager);
-    }
+	/**
+	 * Getter for FlippingPagerAdapter
+	 */
+	private static PagerAdapter getFlippingPagerAdapter() {
+		return mFlippingPagerAdapter;
+	}
 
-    /*
-     * Method to start Auto Cycle using Handler, Runnable and Timer
-     */
-    private void startAutoCycle() {
-        final Runnable Update = new Runnable() {
-            public void run() {
-                if (currentPage == getFlippingPagerAdapter().getCount()) {
-                    currentPage = 0;
-                }
-                // true set for smooth transition between pager
-                mFlippingPager.setCurrentItem(currentPage++, true);
-            }
-        };
+	/**
+	 *   Getter for ScrollTime
+	 */
+	public int getScrollTimeInSec() {
+		return scrollTimeInSec;
+	}
 
-        Timer flippingTimer = new Timer();
-        flippingTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(Update);
-            }
-        }, DELAY_MS, scrollTimeInSec * 1000);
-    }
+	/**
+	 * Setting up Scrolling Time for a page
+	 * @param time in second is sent
+	 */
+	public void setScrollTimeInSec(int time) {
+		scrollTimeInSec = time;
+		startAutoCycle();
+	}
 
-    @Override
-    public void onCurrentPageChanged(int currentPosition) {
-        this.currentPage = currentPosition;
-    }
+	/**
+	 * This returns the current page position of view pager
+	 */
+	public int getCurrentPagePosition() {
+		if (getFlippingPagerAdapter() != null) {
+			return mFlippingPager.getCurrentItem() % mFlippingPagerAdapter.getCount();
+		} else {
+			throw new NullPointerException("Adapter not set");
+		}
+	}
+
+	/**
+	 * Use for setting up of FlipperLayout, instantiating view pager, pager indicator
+	 * and binding the adapter with the view pager
+	 * @param context for Inflater
+	 */
+	private void setLayout(Context context) {
+		View view = LayoutInflater.from(context).inflate(
+				R.layout.flipper_layout, this, true);
+		mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
+		pagerIndicator = view.findViewById(R.id.pager_indicator);
+
+		mFlippingPagerAdapter = new FlipperAdapter(context);
+		mFlippingPager.setAdapter(mFlippingPagerAdapter);
+
+		// Handler for onPageChangeListener
+		circularFlipperHandler = new CircularFlipperHandler(mFlippingPager);
+		circularFlipperHandler.setCurrentPageListener(this);
+		mFlippingPager.addOnPageChangeListener(circularFlipperHandler);
+
+		//Starting auto cycle at the time of setting up of layout
+		startAutoCycle();
+	}
+
+	/**
+	 * Add Flipper View to the pager adapter
+	 * @param flipperView is sent as the view to be added to the adapter
+	 */
+	public void addFlipperView(FlipperView flipperView) {
+		((FlipperAdapter) mFlippingPagerAdapter).addFlipperView(flipperView);
+		pagerIndicator.setViewPager(mFlippingPager);
+	}
+
+	/**
+	 * Method to start Auto Cycle using Handler, Runnable and Timer
+	 */
+	private void startAutoCycle() {
+		if (flippingTimer != null) {
+			flippingTimer.cancel();
+			flippingTimer.purge();
+		}
+		flippingTimer = new Timer();
+		flippingTimer.schedule(new TimerTask() {
+			@Override
+			public void run() {
+				handler.post(update);
+			}
+		}, DELAY_MS, scrollTimeInSec * 1000);
+	}
+
+	@Override
+	public void onCurrentPageChanged(int currentPosition) {
+		this.currentPage = currentPosition;
+	}
 }
