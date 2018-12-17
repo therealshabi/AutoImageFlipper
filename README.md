@@ -19,7 +19,7 @@ allprojects {
 2. Add the `AutoImageFlipper` dependency in your app level build.gradle file
 ```
 dependencies {
-	implementation 'com.github.therealshabi:AutoImageFlipper:v1.4.2'
+	implementation 'com.github.therealshabi:AutoImageFlipper:v1.4.3'
 }
 ```
 
@@ -58,7 +58,7 @@ int num_of_pages = 3;
                     //Handle View Click here
                 }
             });
-            flipperLayout.setScrollTimeInSec(3); //setting up scroll time, by default it's 3 seconds
+            flipperLayout.setScrollTimeInSec(5); //setting up scroll time, by default it's 3 seconds
 	    flipperLayout.getScrollTimeInSec(); //returns the scroll time in sec
 	    flipperLayout.getCurrentPagePosition(); //returns the current position of pager
             flipperLayout.addFlipperView(view);
