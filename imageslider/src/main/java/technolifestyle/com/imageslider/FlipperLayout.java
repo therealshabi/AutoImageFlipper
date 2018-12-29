@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.rd.PageIndicatorView;
+import com.rd.animation.type.AnimationType;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+
 /**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
@@ -137,6 +139,8 @@ public class FlipperLayout extends FrameLayout implements
                 R.layout.flipper_layout, this, true);
         mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
         pagerIndicator = view.findViewById(R.id.pager_indicator);
+
+        pagerIndicator.setAnimationType(AnimationType.SCALE);
 
         mFlippingPagerAdapter = new FlipperAdapter(context);
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
