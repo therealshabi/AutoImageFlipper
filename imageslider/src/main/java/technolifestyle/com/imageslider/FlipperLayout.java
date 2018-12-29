@@ -7,13 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.rd.PageIndicatorView;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import me.relex.circleindicator.CircleIndicator;
-
 /**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
@@ -59,7 +59,7 @@ public class FlipperLayout extends FrameLayout implements
     /**
      * CircleIndicator which Indicates the View Pager
      */
-    private CircleIndicator pagerIndicator;
+    private PageIndicatorView pagerIndicator;
 
     /**
      * Scroll Time in seconds
