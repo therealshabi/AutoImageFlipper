@@ -7,6 +7,7 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
+        multiDexEnabled true
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
@@ -28,5 +29,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3@aar'
     implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.android.support:multidex:1.0.3'
     testImplementation 'junit:junit:4.12'
 }
