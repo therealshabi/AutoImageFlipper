@@ -25,7 +25,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'com.romandanylyk:pageindicatorview:1.0.3@aar'
     implementation 'com.squareup.picasso:picasso:2.71828'
