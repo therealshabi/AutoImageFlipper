@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.therealshabi'
+group = 'com.github.technolifestyle'
 
 ext {
     bintrayRepo = 'AutoImageFlipper'
     bintrayName = 'AutoImageFlipper'
 
-    publishedGroupId = 'com.github.therealshabi'
+    publishedGroupId = 'com.github.technolifestyle'
     libraryName = 'AutoImageFlipper'
     artifact = 'imageslider'
 
@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/therealshabi/AutoImageFlipper/'
     gitUrl = 'https://github.com/therealshabi/AutoImageFlipper.git'
 
-    libraryVersion = '1.5.1'
+    libraryVersion = '1.5.3'
 
     developerId = 'therealshabi'
     developerName = 'Shahbaz Hussain'
