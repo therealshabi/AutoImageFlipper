@@ -33,8 +33,10 @@ compile 'com.github.technolifestyle:imageslider:1.5.5'
 
 ### Using Jitpack
 
+* Gradle
+
 1. In your top level `build.gradle` file, in the `repository` section add the `maven { url 'https://jitpack.io' }` as shown below
-```
+```groovy
 allprojects {
   repositories {
     ...
@@ -43,10 +45,29 @@ allprojects {
 }
 ```
 2. Add the `AutoImageFlipper` dependency in your app level build.gradle file
-```
+```groovy
 dependencies {
-	implementation 'com.github.therealshabi:AutoImageFlipper:v1.4.3'
+    implementation 'com.github.therealshabi:AutoImageFlipper:1.5.5'
 }
+```
+
+* Maven
+1. Add the JitPack repository to your build file
+```xml
+<repositories>
+	<repository>
+	   <id>jitpack.io</id>
+	   <url>https://jitpack.io</url>
+	</repository>
+</repositories>
+```
+2. Add the dependency
+```xml
+<dependency>
+    <groupId>com.github.therealshabi</groupId>
+    <artifactId>AutoImageFlipper</artifactId>
+    <version>1.5.5</version>
+</dependency>
 ```
 
 ## Implementation
