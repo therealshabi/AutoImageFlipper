@@ -15,7 +15,7 @@ ext {
     siteUrl = 'https://github.com/therealshabi/AutoImageFlipper/'
     gitUrl = 'https://github.com/therealshabi/AutoImageFlipper.git'
 
-    libraryVersion = '1.5.3-beta.6'
+    libraryVersion = '1.5.4'
 
     developerId = 'therealshabi'
     developerName = 'Shahbaz Hussain'
@@ -31,7 +31,6 @@ android {
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        multiDexEnabled true
         minSdkVersion 17
         targetSdkVersion 28
         versionCode 1
@@ -52,7 +51,6 @@ android {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.google.android.material:material:1.1.0-alpha02'
     testImplementation 'junit:junit:4.12'
     implementation files('libs/picasso-2.5.2.jar')
