@@ -66,11 +66,102 @@ int num_of_pages = 3;
 
 ```
 
+* FlipperView customization includes:
+
+```
+//Instantiate FlipperView
+FlipperView view = new FlipperView(getBaseContext());
+```
+```
+//Set Image into the flipperView using url
+view.setImageUrl("https://source.unsplash.com/random")
+;
+//Set Image using Drawable resource
+view.setImageDrawable(R.drawable.test);
+```
+```
+//Set Image Description Text (Optional)
+view.setDescription("Great Image");
+```
+```
+//Set Description text view background color
+view.setDescriptionBackgroundColor(Color.Green);
+```
+```
+//Set Description text view background alpha (0 <= alpha <= 1)
+view.setDescriptionBackgroundAlpha(0.5f);
+```
+```
+//Set Description text view background with color and alpha (0 <= alpha <= 1)
+view.setDescriptionBackgroundAlpha(Color.BLUE, 0.5f);
+
+//Set Description text view background with a drawable resource
+view.setDescriptionBackgroundDrawable(R.drawable.bg_overlay);
+```
+```
+//Reset Description text view background and text color
+view.resetDescriptionTextView();
+```
+```
+//Set Description Text Text color
+view.setDescriptionTextColor(Color.WHITE);
+```
+```
+//Set Image scale type (E.g. ScaleType.CENTRE_CROP)
+view.setImageScaleType(ScaleType.CENTER_INSIDE);
+```
+```
+//Set click listener
+view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
+	@Override
+	public void onFlipperClick(FlipperView flipperView) {
+		Toast.makeText(MainActivity.this, "I was clicked", Toast.LENGTH_SHORT).show();
+	}
+});
+```
+
+* FlipperLayout methods inlcudes:-
+
+```
+// Instantiation
+FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
+```
+```
+//Set flipper scroll time in seconds (default 3s)
+flipperLayout.setScrollTimeInSec(5) ;
+```
+```
+//Set Circle Indicator width (in dp)
+flipperLayout.setCircleIndicatorWidth(200);
+```
+```
+//Set Circle Indicator height (in dp)
+flipperLayout.setCircleIndicatorHeight(20);
+```
+```
+//Set Circle Indicator width and height (in dp)
+flipperLayout.setCircularIndicatorLayoutParams(200, 20);
+```
+```
+//Remove Circular indicator
+flipperLayout.removeCircleIndicator();
+```
+```
+//Show Circular Indicator
+flipperLayout.showCircleIndicator();
+```
+```
+//Returns the currently displayed 
+flipperLayout.getCurrentPagePosition();
+```
+```
+//Add flipperView into the flipperLayout
+flipperLayout.addFlipperView(flipperView);
+```
+
 ## Tools and Libraries Used : 
 
 1. Picaaso for Image loading
-2. Circle Indicator by https://github.com/ongakuer/CircleIndicator
-
 
 Please feel free to contribute by pull request, issues or feature requests.
 
