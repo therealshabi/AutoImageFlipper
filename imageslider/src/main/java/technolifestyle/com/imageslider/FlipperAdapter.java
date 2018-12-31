@@ -53,9 +53,9 @@ class FlipperAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         FlipperView imageFlipperView = flipperViews.get(position);
-        View v = imageFlipperView.getView();
-        container.addView(v);
-        return v;
+        View view = imageFlipperView.getView();
+        container.addView(view);
+        return view;
     }
 
     @Override

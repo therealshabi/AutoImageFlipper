@@ -1,5 +1,6 @@
 package technolifestyle.com.autoimageslider;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -33,8 +34,14 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 3; i++) {
             FlipperView view = new FlipperView(getBaseContext());
             view.setImageUrl(url[i])
-                    .setDescription("Cool" + (i + 1));
+                    .setDescription("Cool" + (i + 1))
+                    .setDescriptionBackgroundColor(Color.TRANSPARENT)
+                    .resetDescriptionTextView();
             flipperLayout.addFlipperView(view);
+            flipperLayout.setCircleIndicatorHeight(60);
+            flipperLayout.setCircleIndicatorWidth(200);
+            flipperLayout.removeCircleIndicator();
+            flipperLayout.showCircleIndicator();
             view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
                 @Override
                 public void onFlipperClick(FlipperView flipperView) {

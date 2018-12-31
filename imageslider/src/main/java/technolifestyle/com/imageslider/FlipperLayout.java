@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.google.android.material.tabs.TabLayout;
@@ -29,7 +30,7 @@ public class FlipperLayout extends FrameLayout implements
     /**
      * Flipping Pager Adapter
      */
-    private static PagerAdapter mFlippingPagerAdapter;
+    private static FlipperAdapter mFlippingPagerAdapter;
 
     /**
      * Used for auto cycling to keep the count of current page
@@ -60,7 +61,7 @@ public class FlipperLayout extends FrameLayout implements
     /**
      * CircleIndicator implementation which Indicates the View Pager
      */
-    private TabLayout tabLayout;
+    private TabLayout circularPagerIndicator;
     /*
      * Scroll Time in seconds
      */
@@ -116,6 +117,49 @@ public class FlipperLayout extends FrameLayout implements
     }
 
     /**
+     * @param width {int} width of circularPagerIndicator
+     */
+    public void setCircleIndicatorWidth(int width) {
+        ViewGroup.LayoutParams params = circularPagerIndicator.getLayoutParams();
+        params.width = width;
+        circularPagerIndicator.setLayoutParams(params);
+    }
+
+    /**
+     * @param height {int} height of circularPagerIndicator
+     */
+    public void setCircleIndicatorHeight(int height) {
+        ViewGroup.LayoutParams params = circularPagerIndicator.getLayoutParams();
+        params.height = height;
+        circularPagerIndicator.setLayoutParams(params);
+    }
+
+    /**
+     * @param width  {int} width of circularPagerIndicator
+     * @param height {int} height of circularPagerIndicator
+     */
+    public void setCircularIndicatorLayoutParams(int width, int height) {
+        ViewGroup.LayoutParams params = circularPagerIndicator.getLayoutParams();
+        params.height = height;
+        params.width = width;
+        circularPagerIndicator.setLayoutParams(params);
+    }
+
+    /**
+     * Method to remove circlePagerIndicator from viewFlipper
+     */
+    public void removeCircleIndicator() {
+        circularPagerIndicator.removeAllTabs();
+    }
+
+    /**
+     * Method to show circlePagerIndicator for viewFlipper
+     */
+    public void showCircleIndicator() {
+        circularPagerIndicator.setupWithViewPager(mFlippingPager, true);
+    }
+
+    /**
      * This returns the current page position of view pager
      */
     public int getCurrentPagePosition() {
@@ -137,11 +181,11 @@ public class FlipperLayout extends FrameLayout implements
                 R.layout.flipper_layout, this, true);
         mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
 
-        tabLayout = view.findViewById(R.id.tabLayout);
+        circularPagerIndicator = view.findViewById(R.id.tabLayout);
 
         mFlippingPagerAdapter = new FlipperAdapter(context);
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
-        tabLayout.setupWithViewPager(mFlippingPager, true);
+        circularPagerIndicator.setupWithViewPager(mFlippingPager, true);
 
         // Handler for onPageChangeListener
         circularFlipperHandler = new CircularFlipperHandler(mFlippingPager);
@@ -158,7 +202,7 @@ public class FlipperLayout extends FrameLayout implements
      * @param flipperView is sent as the view to be added to the adapter
      */
     public void addFlipperView(FlipperView flipperView) {
-        ((FlipperAdapter) mFlippingPagerAdapter).addFlipperView(flipperView);
+        mFlippingPagerAdapter.addFlipperView(flipperView);
 //        pagerIndicator.setViewPager(mFlippingPager);
     }
 
