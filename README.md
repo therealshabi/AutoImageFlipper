@@ -1,11 +1,37 @@
 # AutoImageFlipper
-[![](https://jitpack.io/v/therealshabi/AutoImageFlipper.svg)](https://jitpack.io/#therealshabi/AutoImageFlipper)   [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)
+[ ![Download](https://api.bintray.com/packages/therealshabi/AutoImageFlipper/AutoImageFlipper/images/download.svg?version=1.5.5) ](https://bintray.com/therealshabi/AutoImageFlipper/AutoImageFlipper/1.5.5/link) [![](https://jitpack.io/v/therealshabi/AutoImageFlipper.svg)](https://jitpack.io/#therealshabi/AutoImageFlipper)   
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AutoImageFlipper-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6134)
+[![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AutoImageFlipper-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6134)
 
 Auto Scrolling Image Pager with Pager Indicator and Text
 
 ## Gradle 
+
+### Using jCenter
+
+* Maven
+```xml
+<dependency>
+  <groupId>com.github.technolifestyle</groupId>
+  <artifactId>imageslider</artifactId>
+  <version>1.5.5</version>
+  <type>pom</type>
+</dependency>
+```
+
+* Gradle
+```groovy
+compile 'com.github.technolifestyle:imageslider:1.5.5'
+```
+
+* Ivy
+```xml
+<dependency org='com.github.technolifestyle' name='imageslider' rev='1.5.5'>
+  <artifact name='imageslider' ext='pom' ></artifact>
+</dependency>
+```
+
+### Using Jitpack
 
 1. In your top level `build.gradle` file, in the `repository` section add the `maven { url 'https://jitpack.io' }` as shown below
 ```
@@ -43,7 +69,7 @@ The library is open for contributions. For adding extra features you may send me
 ```
 * In Java File:
 For View Pager with 3 Views
-```        
+```java       
 FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
 int num_of_pages = 3;
         for (int i = 0; i < num_of_pages; i++) {
@@ -68,49 +94,49 @@ int num_of_pages = 3;
 
 * FlipperView customization includes:
 
-```
+```java
 //Instantiate FlipperView
 FlipperView view = new FlipperView(getBaseContext());
 ```
-```
+```java
 //Set Image into the flipperView using url
 view.setImageUrl("https://source.unsplash.com/random")
 ;
 //Set Image using Drawable resource
 view.setImageDrawable(R.drawable.test);
 ```
-```
+```java
 //Set Image Description Text (Optional)
 view.setDescription("Great Image");
 ```
-```
+```java
 //Set Description text view background color
 view.setDescriptionBackgroundColor(Color.Green);
 ```
-```
+```java
 //Set Description text view background alpha (0 <= alpha <= 1)
 view.setDescriptionBackgroundAlpha(0.5f);
 ```
-```
+```java
 //Set Description text view background with color and alpha (0 <= alpha <= 1)
 view.setDescriptionBackgroundAlpha(Color.BLUE, 0.5f);
 
 //Set Description text view background with a drawable resource
 view.setDescriptionBackgroundDrawable(R.drawable.bg_overlay);
 ```
-```
+```java
 //Reset Description text view background and text color
 view.resetDescriptionTextView();
 ```
-```
+```java
 //Set Description Text Text color
 view.setDescriptionTextColor(Color.WHITE);
 ```
-```
+```java
 //Set Image scale type (E.g. ScaleType.CENTRE_CROP)
 view.setImageScaleType(ScaleType.CENTER_INSIDE);
 ```
-```
+```java
 //Set click listener
 view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
 	@Override
@@ -120,48 +146,48 @@ view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
 });
 ```
 
-* FlipperLayout methods inlcudes:-
+* FlipperLayout methods includes:-
 
-```
+```java
 // Instantiation
 FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
 ```
-```
+```java
 //Set flipper scroll time in seconds (default 3s)
 flipperLayout.setScrollTimeInSec(5) ;
 ```
-```
+```java
 //Set Circle Indicator width (in dp)
 flipperLayout.setCircleIndicatorWidth(200);
 ```
-```
+```java
 //Set Circle Indicator height (in dp)
 flipperLayout.setCircleIndicatorHeight(20);
 ```
-```
+```java
 //Set Circle Indicator width and height (in dp)
 flipperLayout.setCircularIndicatorLayoutParams(200, 20);
 ```
-```
+```java
 //Remove Circular indicator
 flipperLayout.removeCircleIndicator();
 ```
-```
+```java
 //Show Circular Indicator
 flipperLayout.showCircleIndicator();
 ```
-```
+```java
 //Returns the currently displayed 
 flipperLayout.getCurrentPagePosition();
 ```
-```
+```java
 //Add flipperView into the flipperLayout
 flipperLayout.addFlipperView(flipperView);
 ```
 
 ## Tools and Libraries Used : 
 
-1. Picaaso for Image loading
+1. Picasso for Image loading
 
 Please feel free to contribute by pull request, issues or feature requests.
 
