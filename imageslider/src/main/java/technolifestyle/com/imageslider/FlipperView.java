@@ -2,6 +2,7 @@ package technolifestyle.com.imageslider;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
@@ -12,9 +13,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
+import androidx.core.content.ContextCompat;
 
-public class FlipperView {
+public class FlipperView extends View {
 
     private FlipperView.OnFlipperClickListener onFlipperClickListener;
 
@@ -28,8 +31,22 @@ public class FlipperView {
     private ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER_CROP;
     private Context context;
 
+    private TextView descriptionTextView;
+
+    private View view;
+    private ImageView autoSliderImage;
+
+    @SuppressLint("InflateParams")
     public FlipperView(Context context) {
+        super(context);
         this.context = context;
+        view = LayoutInflater.from(context)
+                .inflate(R.layout.image_flipper_layout_item,
+                        null,
+                        true);
+        autoSliderImage = view.findViewById(R.id.iv_auto_image_slider);
+        descriptionTextView = view.findViewById(R.id.tv_auto_image_slider);
+        descriptionTextView.getBackground().setAlpha(80);
     }
 
     private String getDescription() {
@@ -74,33 +91,94 @@ public class FlipperView {
         return this;
     }
 
-    public View getView() {
-        @SuppressLint("InflateParams")
-        View view = LayoutInflater.from(context)
-                .inflate(
-                        R.layout.image_flipper_layout_item,
-                        null,
-                        true);
-        ImageView autoSliderImage = view.findViewById(R.id.iv_auto_image_slider);
-        TextView description = view.findViewById(R.id.tv_auto_image_slider);
-        description.getBackground().setAlpha(80);
-        description.setText(getDescription());
+    View getView() {
+        descriptionTextView.setText(getDescription());
         bindData(view, autoSliderImage);
         return view;
     }
 
-    public FlipperView setOnFlipperClickListener(FlipperView.OnFlipperClickListener l) {
+    public void setOnFlipperClickListener(OnFlipperClickListener l) {
         onFlipperClickListener = l;
+    }
+
+    /**
+     * Set the background alpha for descriptionTextView
+     *
+     * @param alpha {float}
+     * @return FlipperView
+     */
+    public FlipperView setDescriptionBackgroundAlpha(float alpha) {
+        descriptionTextView.setBackground(null);
+        descriptionTextView.setAlpha(alpha);
         return this;
     }
 
-    private void bindData(View v, ImageView autoSliderImage) {
-        final FlipperView con = this;
-        v.setOnClickListener(new View.OnClickListener() {
+    /**
+     * Set the background for descriptionTextView
+     *
+     * @param color {int}
+     * @param alpha {float}
+     * @return FlipperView
+     */
+    public FlipperView setDescriptionBackground(@ColorInt int color, float alpha) {
+        descriptionTextView.setBackground(null);
+        descriptionTextView.setBackgroundColor(color);
+        descriptionTextView.setAlpha(alpha);
+        return this;
+    }
+
+
+    /**
+     * set background of descriptionText
+     *
+     * @param color {int} color
+     * @return FlipperView
+     */
+    public FlipperView setDescriptionBackgroundColor(@ColorInt int color) {
+        descriptionTextView.setBackground(null);
+        descriptionTextView.setBackgroundColor(color);
+        return this;
+    }
+
+    /**
+     * set background of descriptionText
+     *
+     * @param drawable {int} drawable resource id
+     * @return FlipperView
+     */
+    public FlipperView setDescriptionBackgroundDrawable(@DrawableRes int drawable) {
+        descriptionTextView.setBackground(ContextCompat.getDrawable(context, drawable));
+        return this;
+    }
+
+    /**
+     * Reset DescriptionTextView back to default
+     *
+     * @return FlipperView
+     */
+    public FlipperView resetDescriptionTextView() {
+        descriptionTextView.setBackground(ContextCompat.getDrawable(context, R.drawable.bg_overlay));
+        descriptionTextView.getBackground().setAlpha(80);
+        descriptionTextView.setTextColor(Color.WHITE);
+        return this;
+    }
+
+    /**
+     * @param color {int} text color for description text view
+     * @return FlipperView
+     */
+    public FlipperView setDescriptionTextColor(@ColorInt int color) {
+        descriptionTextView.setTextColor(color);
+        return this;
+    }
+
+    private void bindData(View view, ImageView autoSliderImage) {
+        final FlipperView flipperView = this;
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (onFlipperClickListener != null) {
-                    onFlipperClickListener.onFlipperClick(con);
+                    onFlipperClickListener.onFlipperClick(flipperView);
                 }
             }
         });
