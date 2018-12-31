@@ -185,6 +185,11 @@ flipperLayout.getCurrentPagePosition();
 flipperLayout.addFlipperView(flipperView);
 ```
 
+> Note: You have to include Internet permission into the manifest for downloading image from the url and setting that up into the FlipperView
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+```
+
 ## Tools and Libraries Used : 
 
 1. Picasso for Image loading
