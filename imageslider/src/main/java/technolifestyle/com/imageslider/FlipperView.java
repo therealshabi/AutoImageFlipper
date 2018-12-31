@@ -3,7 +3,6 @@ package technolifestyle.com.imageslider;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
-import androidx.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+
+import androidx.annotation.DrawableRes;
 
 public class FlipperView {
 
@@ -106,9 +107,10 @@ public class FlipperView {
         try {
             autoSliderImage.setScaleType(getScaleType());
             if (imageUrl != null) {
-                Picasso.get().load(Uri.parse(imageUrl)).into(autoSliderImage);
+                Picasso.with(context).load(Uri.parse(imageUrl))
+                        .into(autoSliderImage);
             } else {
-                Picasso.get().load(imageRes).into(autoSliderImage);
+                Picasso.with(context).load(imageRes).into(autoSliderImage);
             }
         } catch (Exception exception) {
             Log.d("Exception", exception.getMessage());

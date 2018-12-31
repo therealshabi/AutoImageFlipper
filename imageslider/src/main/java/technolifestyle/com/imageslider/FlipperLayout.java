@@ -7,8 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.rd.PageIndicatorView;
-import com.rd.animation.type.AnimationType;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -59,11 +58,10 @@ public class FlipperLayout extends FrameLayout implements
     };
 
     /**
-     * CircleIndicator which Indicates the View Pager
+     * CircleIndicator implementation which Indicates the View Pager
      */
-    private PageIndicatorView pagerIndicator;
-
-    /**
+    private TabLayout tabLayout;
+    /*
      * Scroll Time in seconds
      */
     private int scrollTimeInSec = 3;
@@ -138,12 +136,12 @@ public class FlipperLayout extends FrameLayout implements
         View view = LayoutInflater.from(context).inflate(
                 R.layout.flipper_layout, this, true);
         mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
-        pagerIndicator = view.findViewById(R.id.pager_indicator);
 
-        pagerIndicator.setAnimationType(AnimationType.SCALE);
+        tabLayout = view.findViewById(R.id.tabLayout);
 
         mFlippingPagerAdapter = new FlipperAdapter(context);
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
+        tabLayout.setupWithViewPager(mFlippingPager, true);
 
         // Handler for onPageChangeListener
         circularFlipperHandler = new CircularFlipperHandler(mFlippingPager);
@@ -161,7 +159,7 @@ public class FlipperLayout extends FrameLayout implements
      */
     public void addFlipperView(FlipperView flipperView) {
         ((FlipperAdapter) mFlippingPagerAdapter).addFlipperView(flipperView);
-        pagerIndicator.setViewPager(mFlippingPager);
+//        pagerIndicator.setViewPager(mFlippingPager);
     }
 
     /**
