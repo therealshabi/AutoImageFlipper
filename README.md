@@ -1,5 +1,5 @@
 # AutoImageFlipper
-[ ![Download](https://api.bintray.com/packages/therealshabi/AutoImageFlipper/AutoImageFlipper/images/download.svg?version=1.5.5) ](https://bintray.com/therealshabi/AutoImageFlipper/AutoImageFlipper/1.5.5/link) [![](https://jitpack.io/v/therealshabi/AutoImageFlipper.svg)](https://jitpack.io/#therealshabi/AutoImageFlipper)   
+[ ![Download](https://api.bintray.com/packages/therealshabi/AutoImageFlipper/AutoImageFlipper/images/download.svg) ](https://bintray.com/therealshabi/AutoImageFlipper/AutoImageFlipper/_latestVersion) [![](https://jitpack.io/v/therealshabi/AutoImageFlipper.svg)](https://jitpack.io/#therealshabi/AutoImageFlipper)   
 
 [![API](https://img.shields.io/badge/API-17%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=17)  [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-AutoImageFlipper-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/6134)
 
@@ -14,19 +14,19 @@ Auto Scrolling Image Pager with Pager Indicator and Text
 <dependency>
   <groupId>com.github.technolifestyle</groupId>
   <artifactId>imageslider</artifactId>
-  <version>1.5.5</version>
+  <version>1.5.6</version>
   <type>pom</type>
 </dependency>
 ```
 
 * Gradle
 ```groovy
-compile 'com.github.technolifestyle:imageslider:1.5.5'
+compile 'com.github.technolifestyle:imageslider:1.5.6'
 ```
 
 * Ivy
 ```xml
-<dependency org='com.github.technolifestyle' name='imageslider' rev='1.5.5'>
+<dependency org='com.github.technolifestyle' name='imageslider' rev='1.5.6'>
   <artifact name='imageslider' ext='pom' ></artifact>
 </dependency>
 ```
@@ -66,7 +66,7 @@ dependencies {
 <dependency>
     <groupId>com.github.therealshabi</groupId>
     <artifactId>AutoImageFlipper</artifactId>
-    <version>1.5.5</version>
+    <version>1.5.6</version>
 </dependency>
 ```
 
