@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setLayout() {
         String url[] = {
-                "https://i.pinimg.com/originals/d3/84/d1/d384d1c565dc6b501a61286bf0879481.jpg",
+                "http://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg",
                 "https://source.unsplash.com/random",
                 "https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg"
         };
