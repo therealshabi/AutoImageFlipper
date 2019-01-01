@@ -47,7 +47,7 @@ allprojects {
 2. Add the `AutoImageFlipper` dependency in your app level build.gradle file
 ```groovy
 dependencies {
-    implementation 'com.github.therealshabi:AutoImageFlipper:1.5.5'
+    implementation 'com.github.therealshabi:AutoImageFlipper:1.5.6'
 }
 ```
 
