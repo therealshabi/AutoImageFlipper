@@ -21,7 +21,7 @@ Auto Scrolling Image Pager with Pager Indicator and Text
 
 * Gradle
 ```groovy
-compile 'com.github.technolifestyle:imageslider:1.5.6'
+implementation 'com.github.technolifestyle:imageslider:1.5.6'
 ```
 
 * Ivy
