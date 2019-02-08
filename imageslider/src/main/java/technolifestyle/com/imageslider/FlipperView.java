@@ -185,10 +185,10 @@ public class FlipperView extends View {
         try {
             autoSliderImage.setScaleType(getScaleType());
             if (imageUrl != null) {
-                Picasso.with(context).load(Uri.parse(imageUrl))
+                Picasso.get().load(Uri.parse(imageUrl))
                         .into(autoSliderImage);
             } else {
-                Picasso.with(context).load(imageRes).into(autoSliderImage);
+                Picasso.get().load(imageRes).into(autoSliderImage);
             }
         } catch (Exception exception) {
             Log.d("Exception", exception.getMessage());
