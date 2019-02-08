@@ -53,7 +53,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
     implementation 'com.google.android.material:material:1.1.0-alpha02'
     testImplementation 'junit:junit:4.12'
-    implementation files('libs/picasso-2.5.2.jar')
+//    implementation files('libs/picasso-2.5.2.jar')
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
