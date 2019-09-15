@@ -55,13 +55,13 @@ class FlipperView(context: Context) : View(context) {
     }
 
     fun setImageUrl(imageUrl: String): FlipperView {
-        kotlin.check(imageRes == 0) { "Can't set multiple images" }
+        check(imageRes == 0) { "Can't set multiple images" }
         this.imageUrl = imageUrl
         return this
     }
 
     fun setImageDrawable(imageDrawable: Int): FlipperView {
-        kotlin.check(TextUtils.isEmpty(imageUrl)) { "Can't set multiple images" }
+        check(TextUtils.isEmpty(imageUrl)) { "Can't set multiple images" }
         this.imageRes = imageDrawable
         return this
     }
