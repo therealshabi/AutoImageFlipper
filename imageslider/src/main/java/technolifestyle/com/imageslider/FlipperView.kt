@@ -163,18 +163,7 @@ class FlipperView(context: Context) : View(context) {
                 onFlipperClickListener?.onFlipperClick(flipperView)
             }
         }
-        try {
-            autoSliderImage.scaleType = scaleType
-            if (imageUrl != null) {
-                Picasso.with(context).load(Uri.parse(imageUrl))
-                        .into(autoSliderImage)
-            } else {
-                Picasso.with(context).load(imageRes).into(autoSliderImage)
-            }
-        } catch (exception: Exception) {
-            Log.d("Exception", exception.message)
-        }
-
+        autoSliderImage.scaleType = scaleType
     }
 
     interface OnFlipperClickListener {
