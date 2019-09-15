@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.annotation.Nullable;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
@@ -228,5 +229,18 @@ public class FlipperLayout extends FrameLayout implements
     @Override
     public void onCurrentPageChanged(int currentPosition) {
         this.currentPage = currentPosition;
+    }
+
+
+    /**
+     * @param reverseDrawingOrder true if the supplied PageTransformer requires page views
+     *                            to be drawn from last to first instead of first to last.
+     * @param transformer         PageTransformer that will modify each page's animation properties
+     * @link {https://developer.android.com/training/animation/screen-slide.html#kotlin}
+     * Method to add Page transformer into the Flipper layout
+     */
+    public void addPageTransformer(boolean reverseDrawingOrder,
+                                   @Nullable ViewPager.PageTransformer transformer) {
+        mFlippingPager.setPageTransformer(reverseDrawingOrder, transformer);
     }
 }
