@@ -116,10 +116,19 @@ FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
 int num_of_pages = 3;
 for (int i = 0; i < num_of_pages; i++) {
   FlipperView view = new FlipperView(getBaseContext());
-  view.setImageUrl("<valid image url>")
-      .setImageDrawable(R.drawable.test) // Use one of setImageUrl() or setImageDrawable() functions, otherwise IllegalStateException will be thrown
-      .setImageScaleType(ScaleType.CENTER_CROP) //You can use any ScaleType
-      .setDescription("Description")
+  view.setImageScaleType(ScaleType.CENTER_CROP) //You can use any ScaleType
+      .setDescription("Description") // Add custom description for your image in the flipper view
+      .setImage(R.mipmap.ic_launcher, new Function2<ImageView, Object, Unit>() {
+          @Override
+          public Unit invoke(ImageView imageView, Object image) {
+              // As per the user discretion as to how they want to load the URL
+              /* E.g since an image of Drawable type is sent as a param in setImage method, The Object
+              * image will be of type Drawable
+              * imageView.setImageDrawable((Drawable)image);
+              */
+              return Unit.INSTANCE;
+          }
+      })
       .setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
         @Override
         public void onFlipperClick(FlipperView flipperView) {
@@ -141,13 +150,97 @@ for (int i = 0; i < num_of_pages; i++) {
 FlipperView view = new FlipperView(getBaseContext());
 ```
 
-```java
+### Methods to set image resource into the Flipper View
+
+- Kotlin
+
+```kotlin
 //Set Image into the flipperView using url
-view.setImageUrl("https://source.unsplash.com/random")
-;
+view.setImageUrl("https://source.unsplash.com/random") { imageView, image ->
+    // Load image (url) into the imageview using any image loading library of your choice
+    // E.g. Picasso.get().load(image as String).into(imageView);
+}
+
 //Set Image using Drawable resource
-view.setImageDrawable(R.drawable.test);
+view.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder)) { imageView, image ->
+  imageView.setImageDrawable(image as Drawable)
+}
+
+//Set Image using Bitmap image
+view.setImageBitmap(bitmapImage) { imageView, image ->
+  imageView.setImageBitmap(image as Bitmap)
+}
 ```
+
+or you can use a common method to set the image
+
+```kotlin
+view.setImage(R.drawable.error) { imageView, image ->
+  imageView.setImageDrawable(image as Drawable)
+}
+```
+
+There are 4 types of values setImage method can take as the first param, a url of `String` type, an integer drawable resource Id of `@DrawableRes Int` type and images of `Drawable` and `Bitmap` type. In case any other values are send in this method, the method will throw `IllegalArgumentException`.
+
+It's worth noting that for each type of image we provide as the first param in the method we need to type cast the image with the same type while setting the image into the image view via the second higher order function, i.e. for instance in method
+
+```kotlin
+view.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder)) { imageView, image ->
+  imageView.setImageDrawable(image as Drawable)
+}
+```
+
+we sent a Drawable resource file as the first param, so while setting the image in the ImageView in the higher order function, we have type cast it to Drawable type explicitly as we can see in the line `imageView.setImageDrawable(image as Drawable)`, the only exception in this process being the instance when we send a drawable resource, we need to typecast the image to `Drawable` type, although we send an `@DrawableRes Int` param.
+
+E.g.
+
+```kotlin
+view.setImage(R.drawable.error) { imageView, image ->
+  imageView.setImageDrawable(image as Drawable)
+}
+```
+
+Besides that `setImage` method throws 3 kinds of Exception:-
+
+1. When we send a string URL, which does not actually resolve to an actual URL, a `MalformedURLException` is thrown.
+2. `IllegalArgumentException` is thrown when we try to send any Illegal typed first param i.e types in addition to the types a url of `String` type, an integer drawable resource Id of `@DrawableRes Int` type and images of `Drawable` or `Bitmap` type.
+3. `IllegalStateException` this exception is thrown when the user tries to set more than one image into a single `FlipperView`.
+
+- Java
+
+  For java just replace the 2nd param of above methods with:-
+
+  ```java
+  new Function2<ImageView, Object, Unit>() {
+      @Override
+      public Unit invoke(ImageView imageView, Object image) {
+          // As per the user discretion as to how they want to load the URL
+          /* E.g since an image of Drawable type is sent as a param in setImage method, The Object
+          * image will be of type Drawable
+          * imageView.setImageDrawable((Drawable)image);
+          */
+          return Unit.INSTANCE;
+      }
+  }
+  ```
+
+  For Instance the equivalent of `setImageDrawable` method in Java would be:-
+
+  ```java
+  view.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.placeholder), new Function2<ImageView, Object, Unit>() {
+    @Override
+    public Unit invoke(ImageView imageView, Object image) {
+      imageView.setImageDrawable((Drawable) IMAGE);
+      return Unit.INSTANCE;
+    }
+  });
+  ```
+
+  Similarly for all other methods
+
+---
+
+### Other important `FlipperView` methods
 
 ```java
 //Set Image Description Text (Optional)
@@ -243,18 +336,6 @@ flipperLayout.getCurrentPagePosition();
 //Add flipperView into the flipperLayout
 flipperLayout.addFlipperView(flipperView);
 ```
-
-> Note: You have to include Internet permission into the manifest for downloading image from the url and setting that up into the FlipperView
-
-```xml
-<uses-permission android:name="android.permission.INTERNET" />
-```
-
-## Tools and Libraries Used :
-
-1. Picasso for Image loading
-
-Please feel free to contribute by pull request, issues or feature requests.
 
 ## License
 

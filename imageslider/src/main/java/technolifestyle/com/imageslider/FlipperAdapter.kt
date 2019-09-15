@@ -46,4 +46,9 @@ internal class FlipperAdapter : PagerAdapter() {
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as View)
     }
+
+    fun addAllFlipperViews(flipperViewList: List<FlipperView>) {
+        flipperViews.addAll(flipperViewList)
+        notifyDataSetChanged()
+    }
 }

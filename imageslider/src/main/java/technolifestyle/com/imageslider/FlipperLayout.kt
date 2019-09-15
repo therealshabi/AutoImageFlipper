@@ -184,6 +184,19 @@ class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
     }
 
     /**
+     * Add multiple Flipper Views to the pager adapter
+     *
+     * @param flipperViewList is sent as the list of views to be added to the adapter
+     */
+    fun addFlipperViewList(flipperViewList: List<FlipperView>) {
+        flipperViewList.forEach {
+            it.setViewHeight(flipperLayout?.layoutParams?.height!!)
+        }
+        mFlippingPagerAdapter.addAllFlipperViews(flipperViewList)
+        //        pagerIndicator.setViewPager(mFlippingPager);
+    }
+
+    /**
      * Method to start Auto Cycle using Handler, Runnable and Timer
      */
     private fun startAutoCycle() {

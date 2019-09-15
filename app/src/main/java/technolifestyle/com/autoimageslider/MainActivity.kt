@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
                 arrayOf("https://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg",
                         "https://source.unsplash.com/random",
                         "https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg")
+
+        val flipperViewList: ArrayList<FlipperView> = ArrayList()
         for (i in url.indices) {
             val view = FlipperView(baseContext)
             view.setDescription("Cool" + (i + 1))
@@ -41,17 +43,19 @@ class MainActivity : AppCompatActivity() {
                     .setImage(url[i]) { flipperImageView, image ->
                         Picasso.get().load(image as String).into(flipperImageView)
                     }
-            flipperLayout.setCircleIndicatorHeight(60)
-            flipperLayout.setCircleIndicatorWidth(200)
-            flipperLayout.removeCircleIndicator()
-            flipperLayout.showCircleIndicator()
             view.setOnFlipperClickListener(object : FlipperView.OnFlipperClickListener {
                 override fun onFlipperClick(flipperView: FlipperView) {
                     Toast.makeText(this@MainActivity, "Here " + (flipperLayout.currentPagePosition + 1), Toast.LENGTH_SHORT).show()
                 }
             })
-            flipperLayout.addFlipperView(view)
+            flipperViewList.add(view)
         }
+
+        flipperLayout.addFlipperViewList(flipperViewList)
+        flipperLayout.setCircleIndicatorHeight(60)
+        flipperLayout.setCircleIndicatorWidth(200)
+        flipperLayout.removeCircleIndicator()
+        flipperLayout.showCircleIndicator()
         val view = FlipperView(baseContext)
         view.setDescription("This is Black Panther II from new Marvel Movies")
         view.setImageScaleType(ImageView.ScaleType.CENTER_CROP)
