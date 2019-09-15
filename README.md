@@ -20,24 +20,24 @@ Android Studio top bar.
 
 ```xml
 <dependency>
-  <groupId>com.github.technolifestyle</groupId>
-  <artifactId>imageslider</artifactId>
-  <version>1.5.6</version>
-  <type>pom</type>
+	<groupId>com.github.technolifestyle</groupId>
+	<artifactId>AutoImageFlipper</artifactId>
+	<version>1.5.8</version>
+	<type>pom</type>
 </dependency>
 ```
 
 - Gradle
 
 ```groovy
-implementation 'com.github.technolifestyle:imageslider:1.5.6'
+implementation 'com.github.technolifestyle:AutoImageFlipper:1.5.8'
 ```
 
 - Ivy
 
 ```xml
-<dependency org='com.github.technolifestyle' name='imageslider' rev='1.5.6'>
-  <artifact name='imageslider' ext='pom' ></artifact>
+<dependency org="com.github.technolifestyle" name="AutoImageFlipper" rev="1.5.8">
+	<artifact name="AutoImageFlipper" ext="pom"></artifact>
 </dependency>
 ```
 
