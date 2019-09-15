@@ -1,11 +1,23 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.novoda.bintray-release'
 group = 'com.github.technolifestyle'
 
 repositories {
     mavenCentral()
+    jcenter()
+}
+
+publish {
+    userOrg = 'therealshabi'
+    groupId = 'com.github.technolifestyle'
+    repoName = 'AutoImageFlipper'
+    artifactId = 'AutoImageFlipper'
+    publishVersion = '1.5.8'
+    desc = 'A carousel like implementation for Android with many functionalities'
+    website = 'https://github.com/therealshabi/AutoImageFlipper/'
 }
 
 ext {
@@ -54,6 +66,10 @@ android {
     }
 }
 
+task javadoc(type: Javadoc) {
+    excludes = ['**/*.kt'] // < ---- Exclude all kotlin files from javadoc file.
+}
+
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -65,4 +81,3 @@ dependencies {
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
