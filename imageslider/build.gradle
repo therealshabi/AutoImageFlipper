@@ -1,6 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.technolifestyle'
+
+repositories {
+    mavenCentral()
+}
 
 ext {
     bintrayRepo = 'AutoImageFlipper'
@@ -50,10 +56,12 @@ android {
 
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-    implementation 'com.google.android.material:material:1.1.0-alpha02'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'com.google.android.material:material:1.1.0-alpha10'
     testImplementation 'junit:junit:4.12'
-    implementation files('libs/picasso-2.5.2.jar')
+    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
