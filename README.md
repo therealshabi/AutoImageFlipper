@@ -60,7 +60,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    implementation 'com.github.therealshabi:AutoImageFlipper:1.5.6'
+    implementation 'com.github.therealshabi:AutoImageFlipper:1.5.7'
 }
 ```
 
@@ -83,7 +83,7 @@ dependencies {
 <dependency>
     <groupId>com.github.therealshabi</groupId>
     <artifactId>AutoImageFlipper</artifactId>
-    <version>1.5.6</version>
+    <version>1.5.7</version>
 </dependency>
 ```
 
