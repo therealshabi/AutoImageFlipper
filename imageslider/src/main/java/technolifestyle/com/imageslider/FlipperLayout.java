@@ -8,19 +8,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
 public class FlipperLayout extends FrameLayout implements
         CircularFlipperHandler.CurrentPageListener {
+
+    private View flipperLayout;
 
     /**
      * Delay for Timer Task
@@ -177,11 +179,10 @@ public class FlipperLayout extends FrameLayout implements
      * @param context for Inflater
      */
     private void setLayout(Context context) {
-        View view = LayoutInflater.from(context).inflate(
+        flipperLayout = LayoutInflater.from(context).inflate(
                 R.layout.flipper_layout, this, true);
-        mFlippingPager = view.findViewById(R.id.vp_flipper_layout);
-
-        circularPagerIndicator = view.findViewById(R.id.tabLayout);
+        mFlippingPager = flipperLayout.findViewById(R.id.vp_flipper_layout);
+        circularPagerIndicator = flipperLayout.findViewById(R.id.tabLayout);
 
         mFlippingPagerAdapter = new FlipperAdapter(context);
         mFlippingPager.setAdapter(mFlippingPagerAdapter);
@@ -202,6 +203,7 @@ public class FlipperLayout extends FrameLayout implements
      * @param flipperView is sent as the view to be added to the adapter
      */
     public void addFlipperView(FlipperView flipperView) {
+        flipperView.setViewHeight(flipperLayout.getLayoutParams().height);
         mFlippingPagerAdapter.addFlipperView(flipperView);
 //        pagerIndicator.setViewPager(mFlippingPager);
     }

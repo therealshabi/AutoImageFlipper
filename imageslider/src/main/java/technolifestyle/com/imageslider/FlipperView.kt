@@ -152,6 +152,10 @@ class FlipperView(context: Context) : View(context) {
         return this
     }
 
+    fun setViewHeight(height: Int) {
+        this.autoSliderImageView.layoutParams.height = height
+    }
+
     private fun bindData(view: View, autoSliderImage: ImageView) {
         val flipperView = this
         view.setOnClickListener {
