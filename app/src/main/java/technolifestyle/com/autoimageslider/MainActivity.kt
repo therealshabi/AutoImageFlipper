@@ -1,11 +1,11 @@
 package technolifestyle.com.autoimageslider
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.squareup.picasso.Picasso
 import technolifestyle.com.imageslider.FlipperLayout
 import technolifestyle.com.imageslider.FlipperView
@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
             view.setDescription("Cool" + (i + 1))
                     .setDescriptionBackgroundColor(Color.TRANSPARENT)
                     .resetDescriptionTextView()
-                    .setImage(url[i]) { flipperImageView ->
-                        Picasso.get().load(url[i]).into(flipperImageView)
+                    .setImage(url[i]) { flipperImageView, image ->
+                        Picasso.get().load(image as String).into(flipperImageView)
                     }
             flipperLayout.setCircleIndicatorHeight(60)
             flipperLayout.setCircleIndicatorWidth(200)
@@ -48,12 +48,13 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "Here " + (flipperLayout.currentPagePosition + 1), Toast.LENGTH_SHORT).show()
                 }
             })
+            flipperLayout.addFlipperView(view)
         }
         val view = FlipperView(baseContext)
         view.setDescription("This is Black Panther II from new Marvel Movies")
         view.setImageScaleType(ImageView.ScaleType.CENTER_CROP)
-        view.setImage(R.drawable.placeholder) {
-            it.setImageDrawable(ContextCompat.getDrawable(baseContext, R.drawable.placeholder))
+        view.setImage(R.drawable.error) { imageView, image ->
+            imageView.setImageDrawable(image as Drawable)
         }
         flipperLayout.addFlipperView(view)
     }

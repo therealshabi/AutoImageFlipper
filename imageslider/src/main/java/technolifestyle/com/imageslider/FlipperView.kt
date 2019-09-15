@@ -65,7 +65,7 @@ class FlipperView(context: Context) : View(context) {
      */
     @Throws(MalformedURLException::class, IllegalArgumentException::class, IllegalStateException::class)
     fun setImage(image: Any,
-                 setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+                 setFlipperImage: (flipperImageView: ImageView, image: Any) -> Unit): FlipperView {
         when (image) {
             is String -> {
                 return this.setImageUrl(image, setFlipperImage)
@@ -100,15 +100,16 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
     @Throws(IllegalStateException::class, MalformedURLException::class)
-    fun setImageUrl(imageUrl: String,
-                    setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+    fun setImageUrl(imageUrl: String, setFlipperImage: (
+            flipperImageView: ImageView,
+            imageUrl: String) -> Unit): FlipperView {
         check(imageDrawable == null && imageBitmap == null) {
             context.getString(R.string.multiple_image_illegal_state_exception)
         }
         if (!URLUtil.isValidUrl(imageUrl))
             throw MalformedURLException(context.getString(R.string.malformed_url_exception_message))
         this.imageUrl = imageUrl
-        setFlipperImage(autoSliderImageView)
+        setFlipperImage(autoSliderImageView, imageUrl)
         return this
     }
 
@@ -121,13 +122,17 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
     @Throws(IllegalStateException::class)
-    fun setImageDrawable(imageDrawable: Drawable?,
-                         setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+    fun setImageDrawable(imageDrawable: Drawable?, setFlipperImage: (
+            flipperImageView: ImageView,
+            imageDrawable: Drawable) -> Unit): FlipperView {
         check(TextUtils.isEmpty(imageUrl) && imageBitmap == null) {
             context.getString(R.string.multiple_image_illegal_state_exception)
         }
+        if (imageDrawable == null) {
+            throw NullPointerException(context.getString(R.string.image_drawable_null_exception))
+        }
         this.imageDrawable = imageDrawable
-        setFlipperImage(autoSliderImageView)
+        setFlipperImage(autoSliderImageView, imageDrawable)
         return this
     }
 
@@ -140,13 +145,14 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
     @Throws(IllegalStateException::class)
-    fun setImageBitmap(imageBitmap: Bitmap?,
-                       setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+    fun setImageBitmap(imageBitmap: Bitmap, setFlipperImage: (
+            flipperImageView: ImageView,
+            imageBitmap: Bitmap) -> Unit): FlipperView {
         check(TextUtils.isEmpty(imageUrl) && imageDrawable == null) {
             context.getString(R.string.multiple_image_illegal_state_exception)
         }
         this.imageBitmap = imageBitmap
-        setFlipperImage(autoSliderImageView)
+        setFlipperImage(autoSliderImageView, imageBitmap)
         return this
     }
 

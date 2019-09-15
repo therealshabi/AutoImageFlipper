@@ -3,4 +3,5 @@
     <string name="illegal_image_param">Image is not valid, please specify either an image URL, a bitmap, a drawable or a drawable resource id</string>
     <string name="multiple_image_illegal_state_exception">Image already set for the flipper view. can\'t set multiple images</string>
     <string name="malformed_url_exception_message">The URL string does not resolve to a valid URL</string>
+    <string name="image_drawable_null_exception">The image drawable is null</string>
 </resources>
