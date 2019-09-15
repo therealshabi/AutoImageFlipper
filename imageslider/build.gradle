@@ -10,6 +10,8 @@ repositories {
     jcenter()
 }
 
+
+// See this link https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890
 publish {
     userOrg = 'therealshabi'
     groupId = 'com.github.technolifestyle'
