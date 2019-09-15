@@ -1,19 +1,21 @@
 package technolifestyle.com.imageslider
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.Color
-import android.net.Uri
+import android.graphics.drawable.Drawable
 import android.text.TextUtils
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.webkit.URLUtil
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.flipper_view.view.*
+import java.net.MalformedURLException
 
 class FlipperView(context: Context) : View(context) {
 
@@ -21,13 +23,15 @@ class FlipperView(context: Context) : View(context) {
 
     private var description: String? = null
 
-    @DrawableRes
-    var imageRes: Int = 0
+    var imageDrawable: Drawable? = null
 
-    private var imageUrl: String? = null
+    var imageUrl: String? = null
+
+    var imageBitmap: Bitmap? = null
 
     private var scaleType: ImageView.ScaleType = ImageView.ScaleType.FIT_CENTER
 
+    @SuppressLint("InflateParams")
     private val flipperView: View = LayoutInflater.from(context)
             .inflate(R.layout.flipper_view, null, true)
 
@@ -50,19 +54,99 @@ class FlipperView(context: Context) : View(context) {
         return this
     }
 
-    fun getImageUrl(): String? {
-        return imageUrl
+    /**
+     * This method is used to set and load image into the flipper view
+     * @param image This image can be a String URL, a Bitmap, a drawable resource ID or a drawable itself
+     * @param setFlipperImage This is a custom higher order method/interface which exposes flipperImageView to the
+     * user so that they can set the image into the image view by whatever means they want
+     * @throws MalformedURLException in case the image param is String but it does not resolve to a valid URL
+     * @throws IllegalArgumentException in case the image param is neither of above defined types for image param
+     * @throws IllegalStateException in case more than one type of image is set for a single flipper view
+     */
+    @Throws(MalformedURLException::class, IllegalArgumentException::class, IllegalStateException::class)
+    fun setImage(image: Any,
+                 setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+        when (image) {
+            is String -> {
+                return this.setImageUrl(image, setFlipperImage)
+            }
+
+            is Drawable -> {
+                return this.setImageDrawable(image, setFlipperImage)
+            }
+
+            is @DrawableRes Int -> {
+                return this.setImageDrawable(
+                        ContextCompat.getDrawable(context, image), setFlipperImage)
+            }
+
+            is Bitmap -> {
+                return this.setImageBitmap(image, setFlipperImage)
+            }
+
+            else -> {
+                throw IllegalArgumentException(context.getString(R.string.illegal_image_param))
+            }
+        }
     }
 
-    fun setImageUrl(imageUrl: String): FlipperView {
-        check(imageRes == 0) { "Can't set multiple images" }
+    /**
+     * This method is used to set image url into the flipper image view
+     *
+     * @param imageUrl the String url of image location to be loaded into the flipperImageView
+     * @param setFlipperImage This is a custom higher order method/interface which exposes flipperImageView to the
+     * user so that they can set the image into the image view by whatever means they want
+     * @throws MalformedURLException in case the imageUrl does not resolve to a valid URL
+     * @throws IllegalStateException in case more than one type of image is set for a single flipper view
+     */
+    @Throws(IllegalStateException::class, MalformedURLException::class)
+    fun setImageUrl(imageUrl: String,
+                    setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+        check(imageDrawable == null && imageBitmap == null) {
+            context.getString(R.string.multiple_image_illegal_state_exception)
+        }
+        if (!URLUtil.isValidUrl(imageUrl))
+            throw MalformedURLException(context.getString(R.string.malformed_url_exception_message))
         this.imageUrl = imageUrl
+        setFlipperImage(autoSliderImageView)
         return this
     }
 
-    fun setImageDrawable(imageDrawable: Int): FlipperView {
-        check(TextUtils.isEmpty(imageUrl)) { "Can't set multiple images" }
-        this.imageRes = imageDrawable
+    /**
+     * This method is used to set image url into the flipper image view
+     *
+     * @param imageDrawable the image drawable to be loaded into the flipperImageView
+     * @param setFlipperImage This is a custom higher order method/interface which exposes flipperImageView to the
+     * user so that they can set the image into the image view by whatever means they want
+     * @throws IllegalStateException in case more than one type of image is set for a single flipper view
+     */
+    @Throws(IllegalStateException::class)
+    fun setImageDrawable(imageDrawable: Drawable?,
+                         setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+        check(TextUtils.isEmpty(imageUrl) && imageBitmap == null) {
+            context.getString(R.string.multiple_image_illegal_state_exception)
+        }
+        this.imageDrawable = imageDrawable
+        setFlipperImage(autoSliderImageView)
+        return this
+    }
+
+    /**
+     * This method is used to set image url into the flipper image view
+     *
+     * @param imageBitmap the image bitmap to be loaded into the flipperImageView
+     * @param setFlipperImage This is a custom higher order method/interface which exposes flipperImageView to the
+     * user so that they can set the image into the image view by whatever means they want
+     * @throws IllegalStateException in case more than one type of image is set for a single flipper view
+     */
+    @Throws(IllegalStateException::class)
+    fun setImageBitmap(imageBitmap: Bitmap?,
+                       setFlipperImage: (flipperImageView: ImageView) -> Unit): FlipperView {
+        check(TextUtils.isEmpty(imageUrl) && imageDrawable == null) {
+            context.getString(R.string.multiple_image_illegal_state_exception)
+        }
+        this.imageBitmap = imageBitmap
+        setFlipperImage(autoSliderImageView)
         return this
     }
 
