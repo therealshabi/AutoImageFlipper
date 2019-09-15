@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import technolifestyle.com.imageslider.FlipperLayout
 import technolifestyle.com.imageslider.FlipperView
+import technolifestyle.com.imageslider.pagetransformers.ZoomOutPageTransformer
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         flipperLayout = findViewById(R.id.flipper_layout)
+        flipperLayout.addPageTransformer(false, ZoomOutPageTransformer())
 
         // Uncomment to add your custom scroll time (default is 3 seconds)
         // flipperLayout.setScrollTimeInSec(5);
