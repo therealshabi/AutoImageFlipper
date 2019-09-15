@@ -337,6 +337,33 @@ flipperLayout.getCurrentPagePosition();
 flipperLayout.addFlipperView(flipperView);
 ```
 
+```java
+//Add list of flipperViews into the flipperLayout at once
+ArrayList<FlipperView> flipperViewList = new ArrayList()
+flipperViewList.add(new FlipperView(context));
+flipperViewList.add(new FlipperView(context)
+        .setDescription("test flipper view"));
+...
+flipperLayout.addFlipperViewList(flipperViewList);
+```
+
+```java
+// Add different PageTransformer animation similar to ViewPager
+flipperLayout.addPageTransformer(false, new ZoomOutPageTransformer());
+```
+
+A couple of pre-defined PageTransformer is included in the library namely,
+`ZoomOutPageTransformer` and `DepthPageTransformer`, you can add your custom PageTransformer logic as well.
+
+```java
+flipperLayout.addPageTransformer(false, new ViewPager.PageTransformer() {
+  @Override
+  public void transformPage(@NonNull View page, float position) {
+    //Write your animation logic here
+  }
+});
+```
+
 ## License
 
 ```
