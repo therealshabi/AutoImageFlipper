@@ -1,6 +1,5 @@
 package technolifestyle.com.imageslider
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.net.Uri
@@ -10,15 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-
-import com.squareup.picasso.Picasso
-
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.flipper_view.view.*
 
-class FlipperView @SuppressLint("InflateParams")
-constructor(context: Context) : View(context) {
+class FlipperView(context: Context) : View(context) {
 
     private var onFlipperClickListener: OnFlipperClickListener? = null
 
@@ -26,23 +23,21 @@ constructor(context: Context) : View(context) {
 
     @DrawableRes
     var imageRes: Int = 0
-        private set
 
     private var imageUrl: String? = null
 
-    private var scaleType: ImageView.ScaleType = ImageView.ScaleType.CENTER_CROP
+    private var scaleType: ImageView.ScaleType = ImageView.ScaleType.FIT_CENTER
+
+    private val flipperView: View = LayoutInflater.from(context)
+            .inflate(R.layout.flipper_view, null, true)
 
     private val descriptionTextView: TextView
+    private val autoSliderImageView: ImageView
 
-    private val view: View
-    private val autoSliderImage: ImageView
 
     init {
-        view = LayoutInflater.from(context)
-                .inflate(R.layout.image_flipper_layout_item, null,
-                        true)
-        autoSliderImage = view.findViewById(R.id.iv_auto_image_slider)
-        descriptionTextView = view.findViewById(R.id.tv_auto_image_slider)
+        autoSliderImageView = flipperView.autoSliderImageView
+        descriptionTextView = flipperView.descriptionTextView
         descriptionTextView.background.alpha = 80
     }
 
@@ -60,13 +55,13 @@ constructor(context: Context) : View(context) {
     }
 
     fun setImageUrl(imageUrl: String): FlipperView {
-        check(imageRes == 0) { "Can't set multiple images" }
+        kotlin.check(imageRes == 0) { "Can't set multiple images" }
         this.imageUrl = imageUrl
         return this
     }
 
     fun setImageDrawable(imageDrawable: Int): FlipperView {
-        check(TextUtils.isEmpty(imageUrl)) { "Can't set multiple images" }
+        kotlin.check(TextUtils.isEmpty(imageUrl)) { "Can't set multiple images" }
         this.imageRes = imageDrawable
         return this
     }
@@ -76,10 +71,10 @@ constructor(context: Context) : View(context) {
         return this
     }
 
-    internal fun getView(): View {
+    fun getView(): View {
         descriptionTextView.text = getDescription()
-        bindData(view, autoSliderImage)
-        return view
+        bindData(flipperView, autoSliderImageView)
+        return flipperView
     }
 
     fun setOnFlipperClickListener(l: OnFlipperClickListener) {
@@ -149,7 +144,7 @@ constructor(context: Context) : View(context) {
     }
 
     /**
-     * @param color {int} text color for description text view
+     * @param color {int} text color for description text flipperView
      * @return FlipperView
      */
     fun setDescriptionTextColor(@ColorInt color: Int): FlipperView {
@@ -161,7 +156,7 @@ constructor(context: Context) : View(context) {
         val flipperView = this
         view.setOnClickListener {
             if (onFlipperClickListener != null) {
-                onFlipperClickListener!!.onFlipperClick(flipperView)
+                onFlipperClickListener?.onFlipperClick(flipperView)
             }
         }
         try {
