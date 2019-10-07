@@ -33,11 +33,10 @@ class FlipperView(context: Context) : View(context) {
 
     @SuppressLint("InflateParams")
     private val flipperView: View = LayoutInflater.from(context)
-            .inflate(R.layout.flipper_view, null, true)
+        .inflate(R.layout.flipper_view, null, true)
 
     private val descriptionTextView: TextView
     private val autoSliderImageView: ImageView
-
 
     init {
         autoSliderImageView = flipperView.autoSliderImageView
@@ -63,9 +62,15 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalArgumentException in case the image param is neither of above defined types for image param
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
-    @Throws(MalformedURLException::class, IllegalArgumentException::class, IllegalStateException::class)
-    fun setImage(image: Any,
-                 setFlipperImage: (flipperImageView: ImageView, image: Any) -> Unit): FlipperView {
+    @Throws(
+        MalformedURLException::class,
+        IllegalArgumentException::class,
+        IllegalStateException::class
+    )
+    fun setImage(
+        image: Any,
+        setFlipperImage: (flipperImageView: ImageView, image: Any) -> Unit
+    ): FlipperView {
         when (image) {
             is String -> {
                 return this.setImageUrl(image, setFlipperImage)
@@ -77,7 +82,8 @@ class FlipperView(context: Context) : View(context) {
 
             is @DrawableRes Int -> {
                 return this.setImageDrawable(
-                        ContextCompat.getDrawable(context, image), setFlipperImage)
+                    ContextCompat.getDrawable(context, image), setFlipperImage
+                )
             }
 
             is Bitmap -> {
@@ -100,9 +106,12 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
     @Throws(IllegalStateException::class, MalformedURLException::class)
-    fun setImageUrl(imageUrl: String, setFlipperImage: (
+    fun setImageUrl(
+        imageUrl: String, setFlipperImage: (
             flipperImageView: ImageView,
-            imageUrl: String) -> Unit): FlipperView {
+            imageUrl: String
+        ) -> Unit
+    ): FlipperView {
         check(imageDrawable == null && imageBitmap == null) {
             context.getString(R.string.multiple_image_illegal_state_exception)
         }
@@ -122,9 +131,12 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
     @Throws(IllegalStateException::class)
-    fun setImageDrawable(imageDrawable: Drawable?, setFlipperImage: (
+    fun setImageDrawable(
+        imageDrawable: Drawable?, setFlipperImage: (
             flipperImageView: ImageView,
-            imageDrawable: Drawable) -> Unit): FlipperView {
+            imageDrawable: Drawable
+        ) -> Unit
+    ): FlipperView {
         check(TextUtils.isEmpty(imageUrl) && imageBitmap == null) {
             context.getString(R.string.multiple_image_illegal_state_exception)
         }
@@ -145,9 +157,12 @@ class FlipperView(context: Context) : View(context) {
      * @throws IllegalStateException in case more than one type of image is set for a single flipper view
      */
     @Throws(IllegalStateException::class)
-    fun setImageBitmap(imageBitmap: Bitmap, setFlipperImage: (
+    fun setImageBitmap(
+        imageBitmap: Bitmap, setFlipperImage: (
             flipperImageView: ImageView,
-            imageBitmap: Bitmap) -> Unit): FlipperView {
+            imageBitmap: Bitmap
+        ) -> Unit
+    ): FlipperView {
         check(TextUtils.isEmpty(imageUrl) && imageDrawable == null) {
             context.getString(R.string.multiple_image_illegal_state_exception)
         }
@@ -196,7 +211,6 @@ class FlipperView(context: Context) : View(context) {
         descriptionTextView.alpha = alpha
         return this
     }
-
 
     /**
      * set background of descriptionText

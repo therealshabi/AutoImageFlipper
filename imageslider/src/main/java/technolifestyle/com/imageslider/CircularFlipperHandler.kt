@@ -2,7 +2,8 @@ package technolifestyle.com.imageslider
 
 import androidx.viewpager.widget.ViewPager
 
-internal class CircularFlipperHandler(private val mViewPager: ViewPager) : ViewPager.OnPageChangeListener {
+internal class CircularFlipperHandler(private val mViewPager: ViewPager) :
+    ViewPager.OnPageChangeListener {
     private var mCurrentPosition: Int = 0
 
     private var currentPageListener: CurrentPageListener? = null
@@ -28,7 +29,8 @@ internal class CircularFlipperHandler(private val mViewPager: ViewPager) : ViewP
     }
 
     override fun onPageScrolled(
-            position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        position: Int, positionOffset: Float, positionOffsetPixels: Int
+    ) {
     }
 
     internal interface CurrentPageListener {

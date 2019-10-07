@@ -100,7 +100,11 @@ class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
         setLayout(context)
     }
 
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         setLayout(context)
     }
 
@@ -155,7 +159,8 @@ class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
      */
     private fun setLayout(context: Context) {
         flipperLayout = LayoutInflater.from(context).inflate(
-                R.layout.flipper_layout, this, true)
+            R.layout.flipper_layout, this, true
+        )
         mFlippingPager = flipperLayout!!.findViewById(R.id.vp_flipper_layout)
         circularPagerIndicator = flipperLayout!!.findViewById(R.id.tabLayout)
 
@@ -216,7 +221,6 @@ class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
         this.currentPage = currentPosition
     }
 
-
     /**
      * @param reverseDrawingOrder true if the supplied PageTransformer requires page views
      * to be drawn from last to first instead of first to last.
@@ -224,8 +228,10 @@ class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
      * @link {https://developer.android.com/training/animation/screen-slide.html#kotlin}
      * Method to add Page transformer into the Flipper layout
      */
-    fun addPageTransformer(reverseDrawingOrder: Boolean,
-                           transformer: ViewPager.PageTransformer?) {
+    fun addPageTransformer(
+        reverseDrawingOrder: Boolean,
+        transformer: ViewPager.PageTransformer?
+    ) {
         mFlippingPager.setPageTransformer(reverseDrawingOrder, transformer)
     }
 
