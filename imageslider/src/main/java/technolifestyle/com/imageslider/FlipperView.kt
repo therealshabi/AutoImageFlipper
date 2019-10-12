@@ -67,9 +67,7 @@ class FlipperView(context: Context) : View(context) {
         IllegalArgumentException::class,
         IllegalStateException::class
     )
-    fun setImage(
-        image: Any,
-        setFlipperImage: (flipperImageView: ImageView, image: Any) -> Unit
+    fun setImage(image: Any, setFlipperImage: (flipperImageView: ImageView, image: Any) -> Unit
     ): FlipperView {
         when (image) {
             is String -> {
