@@ -10,7 +10,6 @@ repositories {
     jcenter()
 }
 
-
 // See this link https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890
 publish {
     userOrg = 'therealshabi'
@@ -62,7 +61,6 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            useProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -75,7 +73,7 @@ task javadoc(type: Javadoc) {
 dependencies {
     api fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'com.google.android.material:material:1.1.0-alpha10'
+    implementation 'com.google.android.material:material:1.2.0-alpha01'
     testImplementation 'junit:junit:4.12'
     implementation "androidx.core:core-ktx:1.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
