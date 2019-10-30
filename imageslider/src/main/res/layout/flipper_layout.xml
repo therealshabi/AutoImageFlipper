@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".FlipperLayout">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".FlipperLayout">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_flipper_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:overScrollMode="never" />
+	<androidx.viewpager.widget.ViewPager
+		android:id="@+id/vp_flipper_layout"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1"
+		android:layout_gravity="center"
+		android:overScrollMode="never" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/indicator_background"
-        android:layout_marginBottom="2dp"
-        android:layout_gravity="center|bottom"
-        app:tabBackground="@drawable/tab_selector"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="0dp"
-        app:tabMaxWidth="0dp" />
-</FrameLayout>
+	<com.google.android.material.tabs.TabLayout
+		android:id="@+id/tabLayout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center|bottom"
+		android:layout_marginTop="4dp"
+		android:layout_marginBottom="2dp"
+		android:background="@drawable/indicator_background"
+		app:tabBackground="@drawable/tab_selector"
+		app:tabGravity="center"
+		app:tabIndicatorHeight="0dp"
+		app:tabMaxWidth="0dp" />
+</LinearLayout>
