@@ -5,7 +5,7 @@ import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.FrameLayout
+import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -14,7 +14,7 @@ import java.util.*
 /**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
-class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
+class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
 
     private var flipperLayout: View? = null
 
@@ -137,14 +137,14 @@ class FlipperLayout : FrameLayout, CircularFlipperHandler.CurrentPageListener {
      * Method to remove circlePagerIndicator from viewFlipper
      */
     fun removeCircleIndicator() {
-        circularPagerIndicator?.removeAllTabs()
+        circularPagerIndicator?.visibility = View.GONE
     }
 
     /**
      * Method to show circlePagerIndicator for viewFlipper
      */
     fun showCircleIndicator() {
-        circularPagerIndicator?.setupWithViewPager(mFlippingPager, true)
+        circularPagerIndicator?.visibility = View.VISIBLE
     }
 
     /**
