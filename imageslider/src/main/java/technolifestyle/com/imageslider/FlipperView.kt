@@ -228,7 +228,6 @@ class FlipperView(context: Context) : View(context) {
      */
     fun resetDescriptionTextView(): FlipperView {
         descriptionTextView.background = ContextCompat.getDrawable(context, R.drawable.bg_overlay)
-        descriptionTextView.background.alpha = 80
         descriptionTextView.setTextColor(Color.WHITE)
         return this
     }
