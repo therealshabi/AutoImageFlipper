@@ -200,9 +200,9 @@ class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
      * Method to start Auto Cycle using Handler, Runnable and Timer
      */
     private fun startAutoCycle() {
-        if (flippingTimer != null) {
-            flippingTimer!!.cancel()
-            flippingTimer!!.purge()
+        removeExistingTimer()
+        if (scrollTimeInSec == 0) {
+            return
         }
         flippingTimer = Timer()
         flippingTimer!!.schedule(object : TimerTask() {
@@ -210,6 +210,25 @@ class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
                 flipperHandler.post(update)
             }
         }, DELAY_MS, (this.scrollTimeInSec * 1000).toLong())
+    }
+
+    /**
+     * Method to remove any existing cycling timer of FlipperLayout
+     */
+    private fun removeExistingTimer() {
+        if (flippingTimer == null) {
+            return
+        }
+        flippingTimer!!.cancel()
+        flippingTimer!!.purge()
+        flippingTimer = null
+    }
+
+    /**
+     * Method to remove automatic cycling of FlipperLayout
+     */
+    fun removeAutoCycle() {
+        removeExistingTimer()
     }
 
     override fun onCurrentPageChanged(currentPosition: Int) {
