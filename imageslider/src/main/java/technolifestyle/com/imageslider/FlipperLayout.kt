@@ -137,14 +137,14 @@ class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
      * Method to remove circlePagerIndicator from viewFlipper
      */
     fun removeCircleIndicator() {
-        circularPagerIndicator?.removeAllTabs()
+        circularPagerIndicator?.visibility = View.GONE
     }
 
     /**
      * Method to show circlePagerIndicator for viewFlipper
      */
     fun showCircleIndicator() {
-        circularPagerIndicator?.setupWithViewPager(mFlippingPager, true)
+        circularPagerIndicator?.visibility = View.VISIBLE
     }
 
     /**
