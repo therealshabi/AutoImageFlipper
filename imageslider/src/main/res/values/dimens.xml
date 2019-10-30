@@ -5,4 +5,5 @@
 	<dimen name="selected_indicator_thickness">6dp</dimen>
 	<dimen name="default_indicator_thickness">5dp</dimen>
 	<dimen name="indicator_background_corner_radius">20dp</dimen>
+	<dimen name="flipper_indicator_margin">4dp</dimen>
 </resources>
