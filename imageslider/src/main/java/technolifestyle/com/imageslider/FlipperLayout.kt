@@ -5,17 +5,18 @@ import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.flipper_layout.view.*
 import technolifestyle.com.imageslider.utils.UIUtils
 import java.util.*
 
 /**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
-class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
+class FlipperLayout : ConstraintLayout, CircularFlipperHandler.CurrentPageListener {
 
     private var flipperLayout: View? = null
 
@@ -160,11 +161,13 @@ class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
         flipperLayout = LayoutInflater.from(context).inflate(
                 R.layout.flipper_layout, this, true)
         mFlippingPager = flipperLayout!!.findViewById(R.id.vp_flipper_layout)
-        circularPagerIndicator = flipperLayout!!.findViewById(R.id.tabLayout)
 
         mFlippingPagerAdapter = FlipperAdapter()
         mFlippingPager.adapter = mFlippingPagerAdapter
-        circularPagerIndicator!!.setupWithViewPager(mFlippingPager, true)
+        exteriorTabLayout.setupWithViewPager(mFlippingPager, true)
+        interiorTabLayout.setupWithViewPager(mFlippingPager, true)
+        // By default tabLayout will be the circularPagerIndicator
+        circularPagerIndicator = exteriorTabLayout
 
         // Handler for onPageChangeListener
         circularFlipperHandler = CircularFlipperHandler(mFlippingPager)
