@@ -197,6 +197,13 @@ class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
     }
 
     /**
+     * Method to remove all flipper views from FlipperLayout
+     */
+    fun removeAllFlipperViews() {
+        mFlippingPagerAdapter.removeAllFlipperViews()
+    }
+
+    /**
      * Method to start Auto Cycle using Handler, Runnable and Timer
      */
     private fun startAutoCycle() {
