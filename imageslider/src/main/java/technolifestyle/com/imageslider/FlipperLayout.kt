@@ -152,6 +152,15 @@ class FlipperLayout : ConstraintLayout, CircularFlipperHandler.CurrentPageListen
     }
 
     /**
+     * Method to set inner pager indicator rather than an exterior indicator
+     */
+    fun setInnerPagerIndicator() {
+        interiorTabLayout.visibility = VISIBLE
+        exteriorTabLayout.visibility = GONE
+        circularPagerIndicator = interiorTabLayout
+    }
+
+    /**
      * Use for setting up of FlipperLayout, instantiating view pager, pager indicator
      * and binding the adapter with the view pager
      *

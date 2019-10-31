@@ -51,6 +51,7 @@ class HomeRecyclerAdapter(private val homeContentList: ArrayList<HomeActivity.Ho
             RecyclerView.ViewHolder(homeFlipperItemView) {
         fun bind(homeContents: HomeActivity.HomeContents) {
             homeFlipperItemView.flipper_layout.removeAllFlipperViews()
+            homeFlipperItemView.flipper_layout.setInnerPagerIndicator()
             homeFlipperItemView.flipper_layout.setCircleIndicatorHeight(20)
             (homeContents.type as HomeActivity.HomeType.ImageFlipper).flipperList.forEach {
                 homeFlipperItemView.flipper_layout.addFlipperView(
