@@ -1,10 +1,12 @@
 package technolifestyle.com.imageslider
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -158,6 +160,20 @@ class FlipperLayout : ConstraintLayout, CircularFlipperHandler.CurrentPageListen
         interiorTabLayout.visibility = VISIBLE
         exteriorTabLayout.visibility = GONE
         circularPagerIndicator = interiorTabLayout
+    }
+
+    /**
+     * Method to set indicator background drawable
+     */
+    fun setIndicatorBackground(drawable: Drawable?) {
+        circularPagerIndicator?.background = drawable
+    }
+
+    /**
+     * Method to set indicator background color
+     */
+    fun setIndicatorBackgroundColor(@ColorInt color: Int) {
+        circularPagerIndicator?.setBackgroundColor(color)
     }
 
     /**
