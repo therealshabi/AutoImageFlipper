@@ -50,17 +50,21 @@ class HomeRecyclerAdapter(private val homeContentList: ArrayList<HomeActivity.Ho
     internal class HomeImageFlipperViewHolder(private val homeFlipperItemView: View) :
             RecyclerView.ViewHolder(homeFlipperItemView) {
         fun bind(homeContents: HomeActivity.HomeContents) {
-            homeFlipperItemView.flipper_layout.removeAllFlipperViews()
-            homeFlipperItemView.flipper_layout.setCircleIndicatorHeight(20)
-            (homeContents.type as HomeActivity.HomeType.ImageFlipper).flipperList.forEach {
-                homeFlipperItemView.flipper_layout.addFlipperView(
-                        FlipperView(homeFlipperItemView.context).setDescription(it.text)
-                                .setImageUrl(it.imageUrl) { flipperImageView, imageUrl ->
-                                    Picasso.get()
-                                            .load(imageUrl)
-                                            .into(flipperImageView)
-                                }
-                )
+            homeFlipperItemView.flipper_layout.apply {
+                removeAllFlipperViews()
+                setInnerPagerIndicator()
+//                setIndicatorBackgroundColor(Color.parseColor("#90000000"))
+                setCircleIndicatorHeight(20)
+                (homeContents.type as HomeActivity.HomeType.ImageFlipper).flipperList.forEach {
+                    homeFlipperItemView.flipper_layout.addFlipperView(
+                            FlipperView(homeFlipperItemView.context).setDescription(it.text)
+                                    .setImageUrl(it.imageUrl) { flipperImageView, imageUrl ->
+                                        Picasso.get()
+                                                .load(imageUrl)
+                                                .into(flipperImageView)
+                                    }
+                    )
+                }
             }
         }
     }
