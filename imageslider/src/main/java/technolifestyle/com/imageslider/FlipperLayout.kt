@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import technolifestyle.com.imageslider.utils.UIUtils
 import java.util.*
 
 /**
@@ -105,20 +106,22 @@ class FlipperLayout : LinearLayout, CircularFlipperHandler.CurrentPageListener {
     }
 
     /**
-     * @param width {int} width of circularPagerIndicator
+     * @param widthInDP {int} width of circularPagerIndicator in dp
      */
-    fun setCircleIndicatorWidth(width: Int) {
+    fun setCircleIndicatorWidth(widthInDP: Int) {
         val params = circularPagerIndicator!!.layoutParams
-        params.width = width
+        val widthInPixels = UIUtils.getInstance(circularPagerIndicator?.context).dpToPixels(widthInDP)
+        params.width = widthInPixels
         circularPagerIndicator?.layoutParams = params
     }
 
     /**
-     * @param height {int} height of circularPagerIndicator
+     * @param heightInDP {int} height of circularPagerIndicator in dp
      */
-    fun setCircleIndicatorHeight(height: Int) {
+    fun setCircleIndicatorHeight(heightInDP: Int) {
         val params = circularPagerIndicator!!.layoutParams
-        params.height = height
+        val heightInPixels = UIUtils.getInstance(circularPagerIndicator?.context).dpToPixels(heightInDP)
+        params.height = heightInPixels
         circularPagerIndicator?.layoutParams = params
     }
 
