@@ -177,6 +177,13 @@ class FlipperLayout : ConstraintLayout, CircularFlipperHandler.CurrentPageListen
     }
 
     /**
+     * Method to customise FlipperPager as per user's need
+     */
+    fun customizeFlipperPager(customizeBlock: (flipperPager: ViewPager) -> Unit) {
+        customizeBlock(mFlippingPager)
+    }
+
+    /**
      * Use for setting up of FlipperLayout, instantiating view pager, pager indicator
      * and binding the adapter with the view pager
      *
