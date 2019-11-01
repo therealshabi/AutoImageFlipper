@@ -258,7 +258,26 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     /**
      * Method to start Auto Cycle using Handler, Runnable and Timer
      */
-    private fun startAutoCycle() {
+    fun startAutoCycle() {
+        removeExistingTimer()
+        if (scrollTimeInSec == 0) {
+            return
+        }
+        flippingTimer = Timer()
+        flippingTimer!!.schedule(object : TimerTask() {
+            override fun run() {
+                flipperHandler.post(update)
+            }
+        }, DELAY_MS, (this.scrollTimeInSec * 1000).toLong())
+    }
+
+    /**
+     * Method to start Auto Cycle using Handler, Runnable and Timer using the given scroll time
+     * @param scrollTime {Int} The scroll delay in seconds (>=0) between each auto sliding
+     */
+    fun startAutoCycle(scrollTime: Int) {
+        require(scrollTime >= 0) { "Scroll time cannot be a negative value" }
+        scrollTimeInSec = scrollTime
         removeExistingTimer()
         if (scrollTimeInSec == 0) {
             return
