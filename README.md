@@ -90,8 +90,11 @@ dependencies {
 ## Implementation
 
 This is an Automatic scrolling Image Slider Library with the functionality of adding an image with its optional description,
-it also has a View Pager Indicator and built in listeners.
-The library is open for contributions. For adding extra features you may send me a Pull Request...
+it also has a View Pager Indicator and built in listeners and much more.
+
+The library is open for contributions. You can contribute by simply creating a new PR or in case you find any issue/question/any other thing you can report it [here](https://github.com/therealshabi/AutoImageFlipper/issues/new/choose).
+
+## GIFs
 
 <img src="/gif/demo.gif" alt="Auto Image Slider" width= "300px"/>
 
