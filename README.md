@@ -356,9 +356,16 @@ flipperLayout.showInnerPagerIndicator();
 ```
 
 ```java
-// Method to customise the flipper pager
+// Method to customise the flipper layout
 flipperLayout.customizeFlipperPager { flipperPager ->
   // Do whatever you like to do with the flipperPager
+};
+```
+
+```java
+// Method to customise flipper layout's default circular indicator
+flipperLayout.customizeCircularIndicator { circularIndicator ->
+  // Do whatever you like to do with the circular indicator
 };
 ```
 
