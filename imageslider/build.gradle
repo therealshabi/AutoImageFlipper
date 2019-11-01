@@ -10,13 +10,15 @@ repositories {
     jcenter()
 }
 
+def libraryVersionName = '1.6.0'
+
 // See this link https://medium.com/@anitaa_1990/6-easy-steps-to-upload-your-android-library-to-bintray-jcenter-59e6030c8890
 publish {
     userOrg = 'therealshabi'
     groupId = 'com.github.technolifestyle'
     repoName = 'AutoImageFlipper'
     artifactId = 'AutoImageFlipper'
-    publishVersion = '1.5.8'
+    publishVersion = libraryVersionName
     desc = 'A carousel like implementation for Android with many functionalities'
     website = 'https://github.com/therealshabi/AutoImageFlipper/'
 }
@@ -34,7 +36,7 @@ ext {
     siteUrl = 'https://github.com/therealshabi/AutoImageFlipper/'
     gitUrl = 'https://github.com/therealshabi/AutoImageFlipper.git'
 
-    libraryVersion = '1.5.8'
+    libraryVersion = libraryVersionName
 
     developerId = 'therealshabi'
     developerName = 'Shahbaz Hussain'
