@@ -116,7 +116,7 @@ FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
 int num_of_pages = 3;
 for (int i = 0; i < num_of_pages; i++) {
   FlipperView view = new FlipperView(getBaseContext());
-  view.setImageScaleType(ScaleType.CENTER_CROP) //You can use any ScaleType
+  view.setImageScaleType(ScaleType.CENTER_CROP) // You can use any ScaleType
       .setDescription("Description") // Add custom description for your image in the flipper view
       .setImage(R.mipmap.ic_launcher, new Function2<ImageView, Object, Unit>() {
           @Override
@@ -132,7 +132,7 @@ for (int i = 0; i < num_of_pages; i++) {
       .setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
         @Override
         public void onFlipperClick(FlipperView flipperView) {
-            //Handle View Click here
+            // Handle View Click here
         }
     });
   flipperLayout.setScrollTimeInSec(5); //setting up scroll time, by default it's 3 seconds
@@ -243,45 +243,45 @@ Besides that `setImage` method throws 3 kinds of Exception:-
 ### Other important `FlipperView` methods
 
 ```java
-//Set Image Description Text (Optional)
+// Set Image Description Text (Optional)
 view.setDescription("Great Image");
 ```
 
 ```java
-//Set Description text view background color
+// Set Description text view background color
 view.setDescriptionBackgroundColor(Color.Green);
 ```
 
 ```java
-//Set Description text view background alpha (0 <= alpha <= 1)
+// Set Description text view background alpha (0 <= alpha <= 1)
 view.setDescriptionBackgroundAlpha(0.5f);
 ```
 
 ```java
-//Set Description text view background with color and alpha (0 <= alpha <= 1)
+// Set Description text view background with color and alpha (0 <= alpha <= 1)
 view.setDescriptionBackgroundAlpha(Color.BLUE, 0.5f);
 
-//Set Description text view background with a drawable resource
+// Set Description text view background with a drawable resource
 view.setDescriptionBackgroundDrawable(R.drawable.bg_overlay);
 ```
 
 ```java
-//Reset Description text view background and text color
+// Reset Description text view background and text color
 view.resetDescriptionTextView();
 ```
 
 ```java
-//Set Description Text Text color
+// Set Description Text Text color
 view.setDescriptionTextColor(Color.WHITE);
 ```
 
 ```java
-//Set Image scale type (E.g. ScaleType.CENTRE_CROP)
+// Set Image scale type (E.g. ScaleType.CENTRE_CROP)
 view.setImageScaleType(ScaleType.CENTER_INSIDE);
 ```
 
 ```java
-//Set click listener
+// Set click listener
 view.setOnFlipperClickListener(new FlipperView.OnFlipperClickListener() {
   @Override
   public void onFlipperClick(FlipperView flipperView) {
@@ -298,47 +298,82 @@ FlipperLayout flipperLayout = (FlipperLayout) findViewById(R.id.flipper_layout);
 ```
 
 ```java
-//Set flipper scroll time in seconds (default 3s)
-flipperLayout.setScrollTimeInSec(5) ;
+// Set flipper scroll time in seconds (default 3s)
+flipperLayout.setScrollTimeInSec(5);
 ```
 
 ```java
-//Set Circle Indicator width (in dp)
+// Method to remove auto image sliding/flipping/cycling
+flipperLayout.removeAutoCycle();
+```
+
+```java
+// Method to start auto image sliding/flipping/cycling
+flipperLayout.startAutoCycle();
+flipperLayout.startAutoCycle(5); // will start auto cycling image with a delay of 5 seconds
+```
+
+```java
+// Method to remove all existing Flipper Views from the Flipper Layout
+flipperLayout.removeAllFlipperViews();
+```
+
+```java
+// Set Circle Indicator width (in dp)
 flipperLayout.setCircleIndicatorWidth(200);
 ```
 
 ```java
-//Set Circle Indicator height (in dp)
+// Set Circle Indicator height (in dp)
 flipperLayout.setCircleIndicatorHeight(20);
 ```
 
 ```java
-//Set Circle Indicator width and height (in dp)
+// Set Circle Indicator width and height (in dp)
 flipperLayout.setCircularIndicatorLayoutParams(200, 20);
 ```
 
 ```java
-//Remove Circular indicator
+// Metod set circular Indicator background
+flipperLayout.setIndicatorBackgroundColor(Color.parseColor("#90000000")); // To set background color
+flipperLayout.setIndicatorBackground(R.drawable.your_drawable); // To set background drawable using drawable resource id
+flipperLayout.setIndicatorBackground(ContextCompat.getDrawable(context, R.drawable.your_drawable)); // To set background drawable using drawable resource
+```
+
+```java
+// Remove Circular indicator
 flipperLayout.removeCircleIndicator();
 ```
 
 ```java
-//Show Circular Indicator
+// Show Circular Indicator
 flipperLayout.showCircleIndicator();
 ```
 
 ```java
-//Returns the currently displayed
+// Method to show inner circle indicator rather than an exterior indicator
+flipperLayout.showInnerPagerIndicator();
+```
+
+```java
+// Method to customise the flipper pager
+flipperLayout.customizeFlipperPager { flipperPager ->
+  // Do whatever you like to do with the flipperPager
+};
+```
+
+```java
+// Returns the currently displayed
 flipperLayout.getCurrentPagePosition();
 ```
 
 ```java
-//Add flipperView into the flipperLayout
+// Add flipperView into the flipperLayout
 flipperLayout.addFlipperView(flipperView);
 ```
 
 ```java
-//Add list of flipperViews into the flipperLayout at once
+// Add list of flipperViews into the flipperLayout at once
 ArrayList<FlipperView> flipperViewList = new ArrayList()
 flipperViewList.add(new FlipperView(context));
 flipperViewList.add(new FlipperView(context)
