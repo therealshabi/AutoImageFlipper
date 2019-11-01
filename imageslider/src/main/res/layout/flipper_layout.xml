@@ -19,9 +19,9 @@
 	<com.google.android.material.tabs.TabLayout
 		android:id="@+id/exteriorTabLayout"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_marginBottom="@dimen/flipper_indicator_margin"
+		android:layout_height="@dimen/tab_indicator_height"
 		android:layout_marginTop="@dimen/flipper_indicator_margin"
+		android:layout_marginBottom="@dimen/flipper_indicator_margin"
 		android:background="@drawable/indicator_background"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
@@ -35,16 +35,16 @@
 	<com.google.android.material.tabs.TabLayout
 		android:id="@+id/interiorTabLayout"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
+		android:layout_height="@dimen/tab_indicator_height"
+		android:layout_marginTop="@dimen/flipper_indicator_margin"
+		android:layout_marginBottom="@dimen/flipper_indicator_margin"
 		android:background="@drawable/indicator_background"
+		android:visibility="gone"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
 		app:tabBackground="@drawable/tab_selector"
 		app:tabGravity="center"
-		android:layout_marginTop="@dimen/flipper_indicator_margin"
-		android:layout_marginBottom="@dimen/flipper_indicator_margin"
-		android:visibility="gone"
 		app:tabIndicatorHeight="0dp"
 		app:tabMaxWidth="0dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
