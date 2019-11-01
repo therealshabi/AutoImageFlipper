@@ -95,6 +95,8 @@ The library is open for contributions. For adding extra features you may send me
 
 <img src="/gif/demo.gif" alt="Auto Image Slider" width= "300px"/>
 
+<img src="/gif/demo2.gif" alt="Auto Image Slider Demo" width= "300px"/> <img src="/gif/demo1.gif" alt="Auto Image Slider Demo" width= "300px"/>
+
 ## Usage
 
 - In XML layout:
