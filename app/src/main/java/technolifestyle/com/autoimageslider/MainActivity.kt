@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
     private fun setLayout() {
         val url =
                 arrayOf("https://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg",
-                        "https://source.unsplash.com/random",
+                        "https://picsum.photos/300",
                         "https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg")
 
         val flipperViewList: ArrayList<FlipperView> = ArrayList()
@@ -52,8 +52,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         flipperLayout.addFlipperViewList(flipperViewList)
-        flipperLayout.setCircleIndicatorHeight(60)
-        flipperLayout.setCircleIndicatorWidth(200)
         flipperLayout.removeCircleIndicator()
         flipperLayout.showCircleIndicator()
         val view = FlipperView(baseContext)

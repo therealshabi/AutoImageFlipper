@@ -17,14 +17,14 @@ class HomeActivity : AppCompatActivity() {
         arrayList.add(HomeContents(HomeType.Image("https://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg", "Test Image 1")))
         arrayList.add(HomeContents(HomeType.ImageFlipper(ArrayList(listOf(
                 HomeType.Image("https://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg", "Flipper Test Image 1"),
-                HomeType.Image("https://source.unsplash.com/random", "Flipper Test Image 2"),
+                HomeType.Image("https://picsum.photos/1200", "Flipper Test Image 2"),
                 HomeType.Image("https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg", "Flipper Test Image 3")
         )))))
-        arrayList.add(HomeContents(HomeType.Image("https://source.unsplash.com/random", "Test Image 2")))
+        arrayList.add(HomeContents(HomeType.Image("https://picsum.photos/1200", "Test Image 2")))
         arrayList.add(HomeContents(HomeType.Image("https://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg", "Test Image 3")))
         arrayList.add(HomeContents(HomeType.Image("https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg", "Test Image 4")))
         arrayList.add(HomeContents(HomeType.ImageFlipper(ArrayList(listOf(
-                HomeType.Image("https://source.unsplash.com/random", "Flipper Test Image 4"),
+                HomeType.Image("https://picsum.photos/1200", "Flipper Test Image 4"),
                 HomeType.Image("https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg", "Flipper Test Image 5"),
                 HomeType.Image("https://blog.eap.ucop.edu/wp-content/uploads/2016/01/Julie-Huang-27.jpg", "Flipper Test Image 6")
         )))))
