@@ -198,6 +198,15 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
     /**
+     * Method to customise FlipperPager's default circular indicator as per user's need
+     * @param customizeBlock {(TabLayout) -> Unit} a lambda method which exposes the flipper pager's circular indicator to the user
+     */
+    fun customizeCircularIndicator(customizeBlock: (circularIndicator: TabLayout?) -> Unit) {
+        check(circularPagerIndicator?.visibility != View.GONE) { "Circular indicator is removed, can't customise it" }
+        customizeBlock(circularPagerIndicator)
+    }
+
+    /**
      * Use for setting up of FlipperLayout, instantiating view pager, pager indicator
      * and binding the adapter with the view pager
      *
