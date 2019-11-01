@@ -157,9 +157,9 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
     /**
-     * Method to set inner pager indicator rather than an exterior indicator
+     * Method to show inner pager indicator rather than an exterior indicator
      */
-    fun setInnerPagerIndicator() {
+    fun showInnerPagerIndicator() {
         interiorTabLayout.visibility = VISIBLE
         exteriorTabLayout.visibility = GONE
         circularPagerIndicator = interiorTabLayout

@@ -52,7 +52,7 @@ class HomeRecyclerAdapter(private val homeContentList: ArrayList<HomeActivity.Ho
         fun bind(homeContents: HomeActivity.HomeContents) {
             homeFlipperItemView.flipper_layout.apply {
                 removeAllFlipperViews()
-                setInnerPagerIndicator()
+                showInnerPagerIndicator()
 //                setIndicatorBackgroundColor(Color.parseColor("#90000000"))
                 setCircleIndicatorHeight(20)
                 (homeContents.type as HomeActivity.HomeType.ImageFlipper).flipperList.forEach {
