@@ -18,7 +18,12 @@ import java.util.*
 /**
  * FlipperLayout is a compound layout which consists of a View Pager and a View Pager Indicator
  */
-class FlipperLayout : ConstraintLayout, CircularFlipperHandler.CurrentPageListener {
+class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
+        ConstraintLayout(context, attrs, defStyleAttr), CircularFlipperHandler.CurrentPageListener {
+
+    init {
+        setLayout(context)
+    }
 
     private var flipperLayout: View? = null
 
@@ -96,15 +101,11 @@ class FlipperLayout : ConstraintLayout, CircularFlipperHandler.CurrentPageListen
             throw NullPointerException("Adapter not set")
         }
 
-    constructor(context: Context) : super(context) {
+    constructor(context: Context) : this(context, null, 0) {
         setLayout(context)
     }
 
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        setLayout(context)
-    }
-
-    constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor(context: Context, attrs: AttributeSet) : this(context, attrs, 0) {
         setLayout(context)
     }
 
