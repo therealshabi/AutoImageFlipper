@@ -7,7 +7,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
@@ -168,6 +170,14 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
      */
     fun setIndicatorBackground(drawable: Drawable?) {
         circularPagerIndicator?.background = drawable
+    }
+
+    /**
+     * Method to set indicator background drawable using a drawable resource id
+     * @param drawableRes {Int} the resource Id of the drawable to be used
+     */
+    fun setIndicatorBackground(@DrawableRes drawableRes: Int) {
+        circularPagerIndicator?.background = ContextCompat.getDrawable(context, drawableRes)
     }
 
     /**
