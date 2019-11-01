@@ -22,7 +22,7 @@ Android Studio top bar.
 <dependency>
 	<groupId>com.github.technolifestyle</groupId>
 	<artifactId>AutoImageFlipper</artifactId>
-	<version>1.5.8</version>
+	<version>1.6.0</version>
 	<type>pom</type>
 </dependency>
 ```
@@ -30,13 +30,13 @@ Android Studio top bar.
 - Gradle
 
 ```groovy
-implementation 'com.github.technolifestyle:AutoImageFlipper:1.5.8'
+implementation 'com.github.technolifestyle:AutoImageFlipper:1.6.0'
 ```
 
 - Ivy
 
 ```xml
-<dependency org="com.github.technolifestyle" name="AutoImageFlipper" rev="1.5.8">
+<dependency org="com.github.technolifestyle" name="AutoImageFlipper" rev="1.6.0">
 	<artifact name="AutoImageFlipper" ext="pom"></artifact>
 </dependency>
 ```
@@ -60,7 +60,7 @@ allprojects {
 
 ```groovy
 dependencies {
-   implementation 'com.github.therealshabi:AutoImageFlipper:1.5.8'
+   implementation 'com.github.therealshabi:AutoImageFlipper:1.6.0'
 }
 ```
 
@@ -83,7 +83,7 @@ dependencies {
 <dependency>
     <groupId>com.github.therealshabi</groupId>
     <artifactId>AutoImageFlipper</artifactId>
-    <version>1.5.7</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 
