@@ -399,6 +399,13 @@ flipperLayout.addPageTransformer(false, new ViewPager.PageTransformer() {
 });
 ```
 
+---
+
+## Usage with the RecyclerView
+
+To use FlipperLayout in the RecyclerView, before binding the layout remove all the existing flipper views from the FlipperLayout
+by calling `flipperLayout.removeAllFlipperViews()` and post that populate new flipper views in the flipperLayout. A sample code is present in the [HomeRecyclerAdapter](https://github.com/therealshabi/AutoImageFlipper/tree/master/app/src/main/java/technolifestyle/com/autoimageslider/home/HomeRecyclerAdapter.kt#L50-L70) class.
+
 ## License
 
 ```
