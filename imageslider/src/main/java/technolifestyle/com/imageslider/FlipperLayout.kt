@@ -166,7 +166,8 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
     }
 
     /**
-     * Method to set indicator background drawable
+     * Method to set indicator background drawable using a drawable resource
+     * @param drawable {Drawable?} the drawable resource to be used
      */
     fun setIndicatorBackground(drawable: Drawable?) {
         circularPagerIndicator?.background = drawable
@@ -182,6 +183,7 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
     /**
      * Method to set indicator background color
+     * @param color {Int} the color to be set as the background
      */
     fun setIndicatorBackgroundColor(@ColorInt color: Int) {
         circularPagerIndicator?.setBackgroundColor(color)
@@ -189,6 +191,7 @@ class FlipperLayout(context: Context, attrs: AttributeSet?, defStyleAttr: Int) :
 
     /**
      * Method to customise FlipperPager as per user's need
+     * @param customizeBlock {(ViewPager) -> Unit} a lambda method which exposes the flipper pager to the user
      */
     fun customizeFlipperPager(customizeBlock: (flipperPager: ViewPager) -> Unit) {
         customizeBlock(mFlippingPager)
