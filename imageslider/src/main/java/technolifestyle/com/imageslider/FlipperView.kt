@@ -42,7 +42,6 @@ class FlipperView(context: Context) : View(context) {
     init {
         autoSliderImageView = flipperView.autoSliderImageView
         descriptionTextView = flipperView.descriptionTextView
-        descriptionTextView.background.alpha = 80
     }
 
     private fun getDescription(): String? {
