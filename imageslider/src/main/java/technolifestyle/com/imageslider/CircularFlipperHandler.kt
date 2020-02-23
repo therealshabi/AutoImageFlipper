@@ -1,34 +1,43 @@
 package technolifestyle.com.imageslider
 
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager.widget.ViewPager.SCROLL_STATE_DRAGGING
+import androidx.viewpager.widget.ViewPager.SCROLL_STATE_IDLE
 
 internal class CircularFlipperHandler(private val mViewPager: ViewPager) : ViewPager.OnPageChangeListener {
-    private var mCurrentPosition: Int = 0
 
+    private var scrollState = SCROLL_STATE_IDLE
+    private var nextPageAfterScrollStateChanged: Int? = null
     private var currentPageListener: CurrentPageListener? = null
+
 
     fun setCurrentPageListener(currentPageListener: CurrentPageListener) {
         this.currentPageListener = currentPageListener
     }
 
     override fun onPageSelected(position: Int) {
-        mCurrentPosition = position
-        currentPageListener!!.onCurrentPageChanged(mCurrentPosition)
+        currentPageListener!!.onCurrentPageChanged(position)
     }
 
     override fun onPageScrollStateChanged(state: Int) {
-        val currentPage = mViewPager.currentItem
-        if (currentPage == mViewPager.adapter?.count?.minus(1) || currentPage == 0) {
-            val previousState = mCurrentPosition
-            mCurrentPosition = state
-            if (previousState == 1 && mCurrentPosition == 0) {
-                mViewPager.currentItem = if (currentPage == 0) mViewPager.adapter!!.count - 1 else 0
-            }
+        scrollState = state
+
+        nextPageAfterScrollStateChanged?.let {
+            mViewPager.currentItem = it
+            nextPageAfterScrollStateChanged = null
         }
     }
 
-    override fun onPageScrolled(
-            position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        val count = mViewPager.adapter!!.count
+
+        if (scrollState == SCROLL_STATE_DRAGGING && positionOffset == 0f) {
+            if (position == 0) {
+                nextPageAfterScrollStateChanged = count - 1
+            } else if (position == count - 1) {
+                nextPageAfterScrollStateChanged = 0
+            }
+        }
     }
 
     internal interface CurrentPageListener {
