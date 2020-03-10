@@ -31,7 +31,7 @@ public class Main2Activity extends AppCompatActivity {
                 "https://source.unsplash.com/random",
                 "https://i.pinimg.com/originals/18/40/72/184072abb72399c23ab635faaa0a94ad.jpg"
         };
-        for (int i=0; i< url.length; i++) {
+        for (int i = 0; i < url.length; i++) {
             FlipperView view = new FlipperView(getBaseContext());
             view.setDescription("Cool" + (i + 1))
                     .setDescriptionBackgroundColor(Color.TRANSPARENT)
@@ -44,14 +44,14 @@ public class Main2Activity extends AppCompatActivity {
                 @Override
                 public void onFlipperClick(@NotNull FlipperView flipperView) {
                     Toast.makeText(getBaseContext(),
-                    "Here " + (flipperLayout.getCurrentPagePosition() + 1), Toast.LENGTH_SHORT).show();
+                            "Here " + (flipperLayout.getCurrentPagePosition() + 1), Toast.LENGTH_SHORT).show();
                 }
             });
             try {
                 view.setImage(url[i], new Function2<ImageView, Object, Unit>() {
                     @Override
                     public Unit invoke(ImageView imageView, Object image) {
-                        Picasso.get().load((String)image).into(imageView);
+                        Picasso.get().load((String) image).into(imageView);
                         return Unit.INSTANCE;
                     }
                 });
