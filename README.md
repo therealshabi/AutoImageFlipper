@@ -421,7 +421,7 @@ by calling `flipperLayout.removeAllFlipperViews()` and post that populate new fl
 ## License
 
 ```
-Copyright 2019 Shahbaz Hussain
+Copyright 2021 Shahbaz Hussain
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
