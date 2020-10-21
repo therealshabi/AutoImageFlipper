@@ -14,7 +14,6 @@ internal class FlipperAdapter : PagerAdapter() {
 
     fun addFlipperView(view: FlipperView) {
         flipperViews.add(view)
-        notifyDataSetChanged()
     }
 
     fun removeAllFlipperViews() {
